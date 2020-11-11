@@ -1,0 +1,67 @@
+@startuml
+
+class Game{
+player1: Player
+player2: Player
+finish : Boolean
+
+menu(Option): void
+}
+
+class Player{
+name: String
+won: Boolean
+turn : Boolean
+
+isWinner():
+hit( Coordinate): Boolean
+addBoat(Boat): boolean
+}
+
+class Board{
+
+addBoat(Boat): boolean
+}
+
+class Ship{
+
+iniCoord : Coordinate
+size : int
+direction : Direction
+
+Boat(iniCoord, size, direction)
+
+}
+
+class Coordinate{
+- x : int
+- y : int
+- state : State
+
+Coordinate(x,y)
+getState(): State
+changeState(newState): Boolean
+
+}
+
+enum State{
+   EMPTY
+   BOAT
+   HIT
+
+}
+
+enum Direction{
+   HORIZONTAL
+   VERTICAL
+}
+
+Game "1" *-- "1..*" Player
+Player "1" *-- "1" Board
+Board "1" *-- "1..*" Coordinate
+Board --> Ship
+
+Ship -..-> Direction
+Coordinate -..-> State
+
+@enduml
