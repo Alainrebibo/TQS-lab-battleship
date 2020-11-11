@@ -16,7 +16,7 @@ class PlayerTest {
   @Test
   void testPlayerHasWon(){
 
-    Player player = new Player(name);
+    Player player = new Player();
     player.setWon(true);
     assertEquals(player.hasWon(), true);
 
@@ -25,7 +25,7 @@ class PlayerTest {
   @Test
   void testPlayerStartsWithoutWinning(){
 
-    Player player = new Player(name);
+    Player player = new Player();
     assertEquals(player.hasWon(), false);
 
   }
@@ -33,11 +33,9 @@ class PlayerTest {
   @Test
   void testPlayerHasLose(){
 
-    Player player = new Player(name);
+    Player player = new Player();
     assertEquals(player.hasWon(), false);
 
   }
-
-
 
 }
