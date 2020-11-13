@@ -6,20 +6,54 @@ import static org.junit.jupiter.api.Assertions.*;
 class CoordinateTest {
 
   @Test
-  void getX() {
+  void testCoordinateCreation() {
 
-    Coordinate coordinate = new Coordinate(1,2);
-    int x = coordinate.getX();
 
-    assertEquals(x, 1);
   }
 
   @Test
-  void getY() {
+  void testEmptyStateCoordinate() {
 
-    Coordinate coordinate = new Coordinate(1,2);
-    int y = coordinate.getY();
 
-    assertEquals(y, 2);
   }
+
+  @Test
+  void testShipStateCoordinate() {
+
+
+  }
+
+  @Test
+  void testHitStateCoordinate() {
+
+
+  }
+
+  //Test empty coordinate to positioned ship
+  @Test
+  void testEmptyToShipStateCoordinate() {
+
+
+  }
+
+  //Test ship gets hit status
+  @Test
+  void testShipToHitStateCoordinate() {
+
+
+  }
+
+  @Test
+  void testNoShipToEmptyStateCoordinate() {
+
+
+  }
+
+  //Test ship gets hit status
+  @Test
+  void testNoHitToShipStateCoordinate() {
+
+
+  }
+
 }

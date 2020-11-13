@@ -19,17 +19,20 @@ addBoat(Boat): boolean
 }
 
 class model.Board{
-
-addBoat(Boat): boolean
+matrix[10][10] : Coordinate
+ships[10]: Ship
+addShip(Ship): boolean
+removeShip(Ship): void
+hit(Coordinate): State
 }
 
 class model.Ship{
 
-iniCoord : Coordinate
 size : int
 direction : Direction
+shipParts[size]: Coordinate
 
-Boat(iniCoord, size, direction)
+Ship(iniCoord, size, direction)
 
 }
 
@@ -46,7 +49,7 @@ changeState(newState): Boolean
 
 enum model.State{
    EMPTY
-   BOAT
+   SHIP
    HIT
 
 }
