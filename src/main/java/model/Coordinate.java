@@ -3,12 +3,11 @@ package model;
 public class Coordinate {
 
   int x, y;
+  State state;
 
   public Coordinate(){}
 
-  public Coordinate(int x, int y) {
-    this.x = x;
-    this.y = y;
+  public Coordinate(int x, int y, State state) {
   }
 
   public int getX() {
@@ -20,4 +19,11 @@ public class Coordinate {
   }
 
 
+  public State getState() {
+    
+    return null;
+  }
+
+  public void setState(State state) {
+  }
 }

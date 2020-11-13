@@ -1,7 +1,4 @@
-import model.Board;
-import model.Coordinate;
-import model.Direction;
-import model.Ship;
+import model.*;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +18,7 @@ public class ShipTest {
   @Before
   public void setUp() throws  Exception{
 
-    coor00 = new Coordinate(0,0);
+    coor00 = new Coordinate(0,0, State.EMPTY);
     ship = new Ship(coor00,1, Direction.HORIZONTAL);
   }
 
