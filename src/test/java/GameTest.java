@@ -1,3 +1,5 @@
+import model.Game;
+import model.Player;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.CoreMatchers.instanceOf;

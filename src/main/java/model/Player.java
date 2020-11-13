@@ -1,17 +1,19 @@
+package model;
+
 public class Player {
 
   String name;
   Boolean won , turn;
   Board board;
 
-  Player(){
+  public Player(){
     this.name = "Player";
     this.won = false;
     this.turn = false;
     this.board = new Board();
   }
 
-  Player(String name){
+  public Player(String name){
     this.name = name;
     this.won = false;
     this.turn = false;
