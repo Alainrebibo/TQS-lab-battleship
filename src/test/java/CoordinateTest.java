@@ -2,7 +2,8 @@ import model.Coordinate;
 import model.Direction;
 import model.State;
 
-import org.junit.Before;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,8 +12,8 @@ class CoordinateTest {
 
 
   Coordinate coordinate;
-  @Before
-  public void setUp() throws  Exception{
+  @BeforeEach
+  public void setUp() throws  NullPointerException{
 
     coordinate = new Coordinate(0,0,State.EMPTY);
 

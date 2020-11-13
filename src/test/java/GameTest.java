@@ -14,11 +14,9 @@ class GameTest {
   void createGameTest(){
 
     Game game = new Game();
-    Player player1 = game.getPlayer1();
-    Player player2 = game.getPlayer2();
 
-    assertThat(player1, instanceOf(Player.class));
-    assertThat(player2, instanceOf(Player.class));
+    assertThat(game.getPlayer1(), instanceOf(Player.class));
+    assertThat(game.getPlayer2(), instanceOf(Player.class));
     assertFalse(game.getGameFinish());
 
   }
