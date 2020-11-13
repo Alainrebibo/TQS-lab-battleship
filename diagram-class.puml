@@ -1,6 +1,6 @@
 @startuml
 
-class Game{
+class model.Game{
 player1: Player
 player2: Player
 finish : Boolean
@@ -8,7 +8,7 @@ finish : Boolean
 menu(Option): void
 }
 
-class Player{
+class model.Player{
 name: String
 won: Boolean
 turn : Boolean
@@ -18,12 +18,12 @@ hit( Coordinate): Boolean
 addBoat(Boat): boolean
 }
 
-class Board{
+class model.Board{
 
 addBoat(Boat): boolean
 }
 
-class Ship{
+class model.Ship{
 
 iniCoord : Coordinate
 size : int
@@ -33,7 +33,7 @@ Boat(iniCoord, size, direction)
 
 }
 
-class Coordinate{
+class model.Coordinate{
 - x : int
 - y : int
 - state : State
@@ -44,24 +44,24 @@ changeState(newState): Boolean
 
 }
 
-enum State{
+enum model.State{
    EMPTY
    BOAT
    HIT
 
 }
 
-enum Direction{
+enum model.Direction{
    HORIZONTAL
    VERTICAL
 }
 
-Game "1" *-- "1..*" Player
-Player "1" *-- "1" Board
-Board "1" *-- "1..*" Coordinate
-Board --> Ship
+model.Game "1" *-- "1..*" model.Player
+model.Player "1" *-- "1" model.Board
+model.Board "1" *-- "1..*" model.Coordinate
+model.Board --> model.Ship
 
-Ship -..-> Direction
-Coordinate -..-> State
+model.Ship -..-> model.Direction
+model.Coordinate -..-> model.State
 
 @enduml
