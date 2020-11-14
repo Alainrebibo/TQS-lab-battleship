@@ -7,12 +7,14 @@ public class Ship {
     private int size;
     private Direction direction;
 
-    public Ship(Coordinate coordinate, int size, Direction direction) {
+    public Ship(Coordinate iniCoord, int size, Direction direction) {
 
-        this.coordinate = coordinate;
+        this.coordinate = iniCoord;
         this.size = size;
         this.direction = direction;
     }
+
+
 
     public int getSize() {
         return this.size;
