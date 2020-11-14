@@ -18,7 +18,7 @@ class PlayerTest {
   void testPlayerHasWon(){
 
     Player player = new Player();
-    player.setWon(true);
+    player.won();
     assertEquals(player.hasWon(), true);
 
   }

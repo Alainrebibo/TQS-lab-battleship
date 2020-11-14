@@ -54,6 +54,12 @@ public class Controller {
       view.printBoard(this.getBoardP2());
     }while(!model.getGameFinish() );
 
+    if(model.getPlayer2().getWon()){
+      view.showDialog("player 2 WIN");
+    }else{
+      view.showDialog("player 1 WIN");
+    }
+
 
   }
 
@@ -98,34 +104,33 @@ public class Controller {
   public void inputShip() {
 
     Scanner sc = new Scanner(System.in);
-    int[] sizeShip = {1,1,1,1,3,3,2,2,2,5};
+    int[] sizeShip = {1,1,1,1,2,2,2,3,3,4};
     int i = 0;
     int dir;
-    do{
 
-      boolean insertado = false;
+    //boolean insertado = false;
 
-      while (!insertado){
+      while (i < sizeShip.length){
 
-        view.showInputShip(sizeShip[i]);
-        view.showInputFila();
+        view.showInputShip(sizeShip[i]); //Mensaje tamaño barco
+
+        view.showInputFila(); //Mensaje fila
         int fila = sc.nextInt();
 
-        view.showInputCol();
+        view.showInputCol(); //Mensaje columna
         int col = sc.nextInt();
 
+        Direction direction = getDirection(sizeShip[i]); //Obtener dirección
 
-        Direction direction = getDirection(sizeShip[i]);
-
-        Board boardP1 = getBoardP1();
-        if(boardP1.addShip(fila, col, sizeShip[i], direction))
-        {
-          view.shipRestantes( this.getBoardP1().getNumShips());
+        Board boardP1 = getBoardP1(); //Obtiene board 1
+        if(boardP1.addShip(fila, col, sizeShip[i], direction)){
+          view.shipRestantes(this.getBoardP1().getNumShips());
           this.printBoardP1();
-          insertado = true;
           i++;
+
+
         }else{
-          insertado = false;
+          //insertado = false;
           //TODO introduce una posicion valida
           view.showErrorCoord();
         }
@@ -133,13 +138,6 @@ public class Controller {
       }//end while insert
 
 
-    }while (!this.finished());
-
-    if(model.getPlayer2().getWon()){
-      view.showDialog("player 2 WIN");
-    }else{
-      view.showDialog("player 1 WIN");
-    }
   }
 
   private Direction getDirection(int size) {
@@ -168,9 +166,6 @@ public class Controller {
           valorCorrecto = false;
       }
     }
-
-
-
 
     return scDirection;
   }
