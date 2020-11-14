@@ -6,7 +6,7 @@ import model.State;
 
 public class ProvisionalView {
 
-  public static  void printBoard(Board board){
+  public void printBoard(Board board){
 
     Coordinate[][] matrix = board.getMatrix();
     State state;
@@ -45,7 +45,7 @@ public class ProvisionalView {
 
   }
 
-  public static void main(String[] args) {
+  /*public static void main(String[] args) {
 
     Board board = new Board();
 
@@ -56,6 +56,6 @@ public class ProvisionalView {
     board.getCord(ship).setState(State.SHIP);
     printBoard(board);
 
-  }
+  }*/
 
 }
