@@ -121,8 +121,10 @@ public class Board {
     return  allEmpty;
 
   }
-  public Message hit(int fila, int col){
-    return hit(new Coordinate(fila, col));
+  public Message hitEnemy(int fila, int col){
+    this.getCord(new Coordinate(fila, col)).setState(State.HIT);
+
+    return Message.HIT;
   }
 
   public Message hit(Coordinate coordinate) {

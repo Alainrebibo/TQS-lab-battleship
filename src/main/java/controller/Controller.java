@@ -62,14 +62,14 @@ public class Controller {
       case HIT :
         view.showDialog("Has acertado a un barco enemigo.");
 
-        this.model.getPlayer1().getBoardEnemy().hit(fila, col);
+        this.model.getPlayer1().getBoardEnemy().hitEnemy(fila, col);
         break;
       case WATER:
         view.showDialog("Has fallado, habia agua.");
         break;
       case HITANDROWNED:
         view.showDialog("Tocado y hundido.");
-        this.model.getPlayer1().getBoardEnemy().hit(fila, col);
+        this.model.getPlayer1().getBoardEnemy().hitEnemy(fila, col);
         break;
       case ALREADYHIT:
         view.showDialog("Ya habias disparado a esta casilla");
@@ -97,22 +97,25 @@ public class Controller {
 
   public void inputShip() {
 
-    Scanner sc = new Scanner(System.in);
-    int[] sizeShip = {1,1,1,1,3,3,2,2,2,5};
+    Scanner scanner = new Scanner(System.in);
+    int[] sizeShip = {1};
     int i = 0;
     int dir;
-    do{
+    boolean insertado = false;
+    while(i<=10){
 
-      boolean insertado = false;
-
+      insertado = false;
+      int fila = 0 ,col = 0;
       while (!insertado){
 
-        view.showInputShip(sizeShip[i]);
+        //view.showInputShip(sizeShip[0]);
         view.showInputFila();
-        int fila = sc.nextInt();
 
+        fila = scanner.nextInt();
+        scanner.nextLine();
         view.showInputCol();
-        int col = sc.nextInt();
+        col = scanner.nextInt();
+        scanner.nextLine();
 
 
         Direction direction = getDirection(sizeShip[i]);
@@ -123,23 +126,21 @@ public class Controller {
           view.shipRestantes( this.getBoardP1().getNumShips());
           this.printBoardP1();
           insertado = true;
-          i++;
+
+            i++;
+
         }else{
           insertado = false;
-          //TODO introduce una posicion valida
+
           view.showErrorCoord();
         }
-        System.out.println("VALOR I " +  i);
+
       }//end while insert
 
 
-    }while (!this.finished());
+    };
 
-    if(model.getPlayer2().getWon()){
-      view.showDialog("player 2 WIN");
-    }else{
-      view.showDialog("player 1 WIN");
-    }
+
   }
 
   private Direction getDirection(int size) {

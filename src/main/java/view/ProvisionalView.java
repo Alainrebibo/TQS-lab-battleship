@@ -77,7 +77,7 @@ public class ProvisionalView {
   }
 
   public void shipRestantes(int numShips) {
-    System.out.println(" Te faltan por introducir " + (10 - numShips));
+    System.out.println(" has introducido " + numShips );
   }
 
   public void showErrorCoord() {
