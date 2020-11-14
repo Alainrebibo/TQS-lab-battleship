@@ -153,22 +153,18 @@ public class Board {
       State state = this.matrix[x][y].getState();
 
       switch (state){
-
         case EMPTY :
           return Message.WATER;
 
         case SHIP:
-
           Ship ship = findShip(coordinate);
 
-          //assert ship != null;
           if(ship.isAlive()){
             return Message.HIT;
           } else{
             removeShip(ship);
             return Message.HITANDROWNED;
           }
-
 
         case HIT:
           return Message.ALREADYHIT;
@@ -182,7 +178,7 @@ public class Board {
     return Message.OUTBOUNDS;
   }
 
-  private void removeShip(Ship ship) {
+  public void removeShip(Ship ship) {
 
     this.ships.remove(ship);
 

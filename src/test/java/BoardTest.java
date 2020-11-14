@@ -191,5 +191,19 @@ public class BoardTest {
 
   }
 
+  @Test
+  void testRemoveShipFromBoard(){
+
+    Coordinate coordinate = new Coordinate(5,5);
+    Ship ship = new Ship(coordinate, 5, Direction.VERTICAL);
+    board = new Board();
+    assertTrue(board.addShip(ship));
+    board.removeShip(ship);
+    assertEquals(0, board.getShips().size());
+
+  }
+
+
+
 
 }
