@@ -94,12 +94,29 @@ public class BoardTest {
   void testHitEmptyCoordinate(){
     board = new Board();
     Coordinate coordinate = new Coordinate(0, 0);
-    Message aux = board.hit(coordinate);
     assertEquals( Message.WATER, board.hit(coordinate));
   }
 
   @Test
   void testHitShipCoordinate(){
+
+    Coordinate coordinate = new Coordinate(0, 0);
+    Ship ship = new Ship(coordinate, 1, Direction.VERTICAL );
+    board.addShip(ship);
+    coordinate = new Coordinate(0,0);
+    assertEquals( Message.HITANDROWNED, board.hit(coordinate));
+
+  }
+
+  @Test
+  void testHitShipCoordinateAlreadyHit(){
+
+    Coordinate coordinate = new Coordinate(0, 0);
+    Ship ship = new Ship(coordinate, 1, Direction.VERTICAL );
+    board.addShip(ship);
+    coordinate = new Coordinate(0,0);
+    board.hit(coordinate);
+    assertEquals( Message.HIT, board.hit(coordinate));
 
   }
 

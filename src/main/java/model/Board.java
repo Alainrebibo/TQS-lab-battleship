@@ -33,8 +33,8 @@ public class Board {
     return MAX_SIZE;
   }
 
-  public Coordinate getCord(int x, int y){
-    return null;
+  public Coordinate getCord(Coordinate coordinate){
+    return this.matrix[coordinate.getX()][coordinate.getY()];
   }
 
   public boolean addShip(Ship ship) {
@@ -65,6 +65,8 @@ public class Board {
         int x = ship.getCoord()[i].getX();
         int y = ship.getCoord()[i].getY();
         matrix[x][y].setState(State.SHIP);
+
+        this.ships.add(ship);
       }
       shipAdd = true;
     }
@@ -147,17 +149,16 @@ public class Board {
 
         case SHIP:
 
-          coordinate.setState(State.HIT);
-
           Ship ship = findShip(coordinate);
 
-          assert ship != null;
+          //assert ship != null;
           if(ship.isAlive()){
             return Message.HIT;
           } else{
             removeShip(ship);
             return Message.HITANDROWNED;
           }
+
 
         case HIT:
           return Message.ALREADYHIT;
@@ -177,14 +178,15 @@ public class Board {
 
   }
 
-  private Ship findShip(Coordinate coordinate) {
+  private Ship findShip(Coordinate coordinateHit) {
 
     for (Ship ship: this.ships) {
 
       for (Coordinate shipCoordinate : ship.getCoord()) {
 
-        if(coordinate == shipCoordinate){
+        if(coordinateHit.getX() == shipCoordinate.getX() && coordinateHit.getY() == shipCoordinate.getY()){
           shipCoordinate.setState(State.HIT);
+          this.getCord(coordinateHit).setState(State.HIT);
           return ship;
         }
       }
