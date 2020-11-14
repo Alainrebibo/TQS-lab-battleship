@@ -71,7 +71,7 @@ public class BoardTest {
     Coordinate coordOut = new Coordinate(15,15, State.SHIP);
     Ship ship1 = new Ship(coordOut, size1, Direction.HORIZONTAL);
     boolean result = board.addShip(ship1);
-    assertFalse(!result);
+    assertFalse(result);
   }
 
   @Test
@@ -145,18 +145,33 @@ public class BoardTest {
   }
 
   @Test
-  void testCheckAvailableCoordinates(){
+  void testCheckAvailableCoordinatesTrue(){
 
-
+    Coordinate coordinate = new Coordinate(5,5);
+    Ship ship = new Ship(coordinate, 3, Direction.VERTICAL);
+    assertTrue(board.addShip(ship));
 
   }
 
   @Test
-  void testCheckNoShipAround(){
+  void testAddShipOutBoundaries(){
+
+    Coordinate coordinate = new Coordinate(5,5);
+    Ship ship = new Ship(coordinate, 3, Direction.VERTICAL);
+    assertTrue(board.addShip(ship));
 
   }
 
+  @Test
+  void testCoordinateAlreadyHasShip(){
 
+    Coordinate boardCoord = new Coordinate(5,5);
+    board.getCord(boardCoord).setState(State.SHIP);
+
+    Ship ship = new Ship(boardCoord, 3, Direction.VERTICAL);
+    assertFalse(board.addShip(ship));
+
+  }
 
 
 }
