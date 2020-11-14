@@ -7,22 +7,22 @@ public class Coordinate {
   private State state;
 
   public Coordinate(int x, int y, State state) {
-    this.x = x;
-    this.y = y;
+    this.x = x-1;
+    this.y = y-1;
     this.state = state;
   }
 
   public Coordinate(int x, int y) {
-    this.x = x;
-    this.y = y;
+    this.x = x-1;
+    this.y = y-1;
   }
 
   public int getX() {
-    return this.x;
+    return this.x+1;
   }
 
   public int getY() {
-    return this.y;
+    return this.y+1;
   }
 
   public State getState() { return this.state; }

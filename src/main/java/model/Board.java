@@ -34,7 +34,7 @@ public class Board {
   }
 
   public Coordinate getCord(Coordinate coordinate){
-    return this.matrix[coordinate.getX()-1][coordinate.getY()-1];
+    return this.matrix[coordinate.getX()][coordinate.getY()];
   }
 
   public boolean addShip(Ship ship) {
@@ -200,8 +200,7 @@ public class Board {
   private  boolean isEmpty(Coordinate coord){
     boolean empty = false;
 
-    if(coord.getState() == State.EMPTY)
-    {
+    if(coord.getState() == State.EMPTY) {
       empty = true;
     }
       return empty;

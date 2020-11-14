@@ -43,22 +43,22 @@ public class BoardTest {
   void testAddShipCorrect(){
     /*Se ha de tener en cuenta, que no pueden add barcos adjacentes, estos
     * han de tener minimo un cuado de separacion.*/
-    Coordinate coord00 = new Coordinate(0,0, State.SHIP);
+    Coordinate coord00 = new Coordinate(1,1, State.SHIP);
     Ship ship1 = new Ship(coord00, size1,Direction.HORIZONTAL );
     boolean result = board.addShip(ship1);
     assertTrue(result);
 
-    Coordinate coord20 = new Coordinate(0,2, State.SHIP);
+    Coordinate coord20 = new Coordinate(1,3, State.SHIP);
     Ship ship2 = new Ship(coord20, size2,Direction.HORIZONTAL );
     board.addShip(ship2);
     assertTrue(result);
 
-    Coordinate coord40 = new Coordinate(0,4, State.SHIP);
+    Coordinate coord40 = new Coordinate(1,5, State.SHIP);
     Ship ship3 = new Ship(coord40, size3,Direction.HORIZONTAL );
     board.addShip(ship3);
     assertTrue(result);
 
-    Coordinate coord60 = new Coordinate(0,6, State.SHIP);
+    Coordinate coord60 = new Coordinate(1,7, State.SHIP);
     Ship ship4 = new Ship(coord60, size4,Direction.HORIZONTAL );
     board.addShip(ship4);
     assertTrue(result);
@@ -93,17 +93,17 @@ public class BoardTest {
   @Test
   void testHitEmptyCoordinate(){
     board = new Board();
-    Coordinate coordinate = new Coordinate(0, 0);
+    Coordinate coordinate = new Coordinate(1, 1);
     assertEquals( Message.WATER, board.hit(coordinate));
   }
 
   @Test
   void testHitShipCoordinate(){
 
-    Coordinate coordinate = new Coordinate(0, 0);
+    Coordinate coordinate = new Coordinate(1, 1);
     Ship ship = new Ship(coordinate, 1, Direction.VERTICAL );
     board.addShip(ship);
-    coordinate = new Coordinate(0,0);
+    coordinate = new Coordinate(1,1);
     assertEquals( Message.HITANDROWNED, board.hit(coordinate));
 
   }
@@ -111,10 +111,10 @@ public class BoardTest {
   @Test
   void testHitShipCoordinateAlreadyHit(){
 
-    Coordinate coordinate = new Coordinate(0, 0);
+    Coordinate coordinate = new Coordinate(1, 1);
     Ship ship = new Ship(coordinate, 1, Direction.VERTICAL );
     board.addShip(ship);
-    coordinate = new Coordinate(0,0);
+    coordinate = new Coordinate(1,1);
     board.hit(coordinate);
     assertEquals( Message.ALREADYHIT, board.hit(coordinate));
 
@@ -123,13 +123,13 @@ public class BoardTest {
   @Test
   void testCheckBoundariesCorrect(){
 
-    Ship ship = new Ship(new Coordinate(0,0), 4, Direction.VERTICAL);
+    Ship ship = new Ship(new Coordinate(1,1), 4, Direction.VERTICAL);
     assertTrue(board.checkShipBoundaries(ship));
 
   }
 
   @Test
-  void testCheckBoundariesCWrong(){
+  void testCheckBoundariesWrong(){
 
     Ship ship = new Ship(new Coordinate(-1,0), 4, Direction.VERTICAL);
     assertFalse(board.checkShipBoundaries(ship));
@@ -139,7 +139,7 @@ public class BoardTest {
   @Test
   void testCheckBoundariesExtra(){
 
-    Ship ship = new Ship(new Coordinate(9,0), 4, Direction.VERTICAL);
+    Ship ship = new Ship(new Coordinate(10,1), 4, Direction.VERTICAL);
     assertFalse(board.checkShipBoundaries(ship));
 
   }
