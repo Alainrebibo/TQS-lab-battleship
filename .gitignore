@@ -1,0 +1,30 @@
+.idea/.name
+.idea/uiDesigner.xml
+.idea/workspace.xml
+.gradle/workspace-id.txt
+.gradle/workspace-id.txt.lock
+.gradle/6.3/executionHistory/executionHistory.bin
+.gradle/6.3/executionHistory/executionHistory.lock
+.gradle/6.3/fileContent/fileContent.lock
+.gradle/6.3/fileHashes/fileHashes.bin
+.gradle/6.3/fileHashes/fileHashes.lock
+.gradle/6.3/fileHashes/resourceHashesCache.bin
+.gradle/6.3/javaCompile/classAnalysis.bin
+.gradle/6.3/javaCompile/jarAnalysis.bin
+.gradle/6.3/javaCompile/javaCompile.lock
+.gradle/6.3/javaCompile/taskHistory.bin
+.gradle/buildOutputCleanup/buildOutputCleanup.lock
+.gradle/buildOutputCleanup/outputFiles.bin
+
+bin
+.gradle
+**/build/
+!src/**/build/
+# Ignore Gradle GUI config
+gradle-app.setting
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+# Cache of project
+.gradletasknamecache
+# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
+# gradle/wrapper/gradle-wrapper.properties
