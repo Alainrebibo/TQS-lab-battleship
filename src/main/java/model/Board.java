@@ -127,6 +127,9 @@ public class Board {
     return Message.HIT;
   }
 
+  public Message hit(int col, int fila){
+    return  hit(new Coordinate(col, fila));
+  }
   public Message hit(Coordinate coordinate) {
 
     if (insideBoundaries(coordinate)){
