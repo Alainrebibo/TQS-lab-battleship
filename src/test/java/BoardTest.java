@@ -99,15 +99,13 @@ public class BoardTest {
     Coordinate coordinate = new Coordinate(-1, 25);
     //board.hit(coordinate);
 
-    assertFalse(board.hit(coordinate));
+
 
 
   }
 
   @Test
   void testHitEmptyCoordinate(){
-
-
 
 
   }
@@ -119,12 +117,25 @@ public class BoardTest {
   }
 
   @Test
-  void testCheckBoundaries(){
+  void testCheckBoundariesCorrect(){
+
+    Ship ship = new Ship(new Coordinate(0,0), 4, Direction.VERTICAL);
+    assertTrue(board.checkShipBoundaries(ship));
+
+  }
+
+  @Test
+  void testCheckBoundariesCWrong(){
+
+    Ship ship = new Ship(new Coordinate(-1,0), 4, Direction.VERTICAL);
+    assertFalse(board.checkShipBoundaries(ship));
 
   }
 
   @Test
   void testCheckAvailableCoordinates(){
+
+
 
   }
 
