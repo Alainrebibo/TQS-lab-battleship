@@ -49,15 +49,17 @@ public class Controller {
 
 
       view.printBoard(model.getPlayer1().getBoardEnemy());
-      //System.out.println();
-      //System.out.println();
-      //view.printBoard(this.getBoardP2());
+      System.out.println();
+      System.out.println();
+      view.printBoard(this.getBoardP2());
     }while(!model.getGameFinish() );
 
     if(model.getPlayer2().getWon()){
       view.showDialog("player 2 WIN");
+      System.exit(0);
     }else{
       view.showDialog("player 1 WIN");
+      System.exit(0);
     }
 
 

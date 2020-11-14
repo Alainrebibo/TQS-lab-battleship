@@ -29,7 +29,7 @@ public class Player {
   }
 
   public Boolean hasWon() {
-    return won;
+    return this.won;
   }
 
   public void won() {

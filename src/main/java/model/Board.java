@@ -33,6 +33,7 @@ public class Board {
     return MAX_SIZE;
   }
 
+  //TODO PETA AL EJECUTAR
   public Coordinate getCord(Coordinate coordinate){
     return this.matrix[coordinate.getX()][coordinate.getY()];
   }
