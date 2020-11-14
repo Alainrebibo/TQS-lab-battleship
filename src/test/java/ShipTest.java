@@ -6,8 +6,8 @@ import model.State;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.*;
+
 
 public class ShipTest {
 
@@ -63,11 +63,16 @@ public class ShipTest {
   void testShipCoordinatesInitialization(){
     ship = new Ship(coordinateZeroZeroEmpty, 1, Direction.HORIZONTAL);
     Coordinate aux = ship.getIniCoord();
-    assertEquals(coordinateZeroZeroShip, ship.getIniCoord());
+    assertEquals(coordinateZeroZeroShip.getX(), aux.getX());
+    assertEquals(coordinateZeroZeroShip.getY(), aux.getY());
+    assertEquals(coordinateZeroZeroShip.getState(), aux.getState());
+
 
     ship = new Ship(coordinateZeroZeroEmpty, 4, Direction.VERTICAL);
-     aux = ship.getIniCoord();
-    assertEquals(coordinateZeroZeroShip, ship.getIniCoord());
+    aux = ship.getIniCoord();
+    assertEquals(coordinateZeroZeroShip.getX(), aux.getX());
+    assertEquals(coordinateZeroZeroShip.getY(), aux.getY());
+    assertEquals(coordinateZeroZeroShip.getState(), aux.getState());
   }
 
 /*  @Test
