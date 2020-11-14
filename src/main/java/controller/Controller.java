@@ -49,9 +49,9 @@ public class Controller {
 
 
       view.printBoard(model.getPlayer1().getBoardEnemy());
-      System.out.println();
-      System.out.println();
-      view.printBoard(this.getBoardP2());
+      //System.out.println();
+      //System.out.println();
+      //view.printBoard(this.getBoardP2());
     }while(!model.getGameFinish() );
 
     if(model.getPlayer2().getWon()){
@@ -103,27 +103,6 @@ public class Controller {
 
   public void inputShip() {
 
-<<<<<<< HEAD
-    Scanner scanner = new Scanner(System.in);
-    int[] sizeShip = {1};
-    int i = 0;
-    int dir;
-    boolean insertado = false;
-    while(i<=10){
-
-      insertado = false;
-      int fila = 0 ,col = 0;
-      while (!insertado){
-
-        //view.showInputShip(sizeShip[0]);
-        view.showInputFila();
-
-        fila = scanner.nextInt();
-        scanner.nextLine();
-        view.showInputCol();
-        col = scanner.nextInt();
-        scanner.nextLine();
-=======
     Scanner sc = new Scanner(System.in);
     int[] sizeShip = {1,1,1,1,2,2,2,3,3,4};
     int i = 0;
@@ -140,7 +119,6 @@ public class Controller {
 
         view.showInputCol(); //Mensaje columna
         int col = sc.nextInt();
->>>>>>> 548f81ea1b47e704b40d171ef8873154b78244da
 
         Direction direction = getDirection(sizeShip[i]); //Obtener dirección
 
@@ -148,34 +126,18 @@ public class Controller {
         if(boardP1.addShip(fila, col, sizeShip[i], direction)){
           view.shipRestantes(this.getBoardP1().getNumShips());
           this.printBoardP1();
-<<<<<<< HEAD
-          insertado = true;
-
-            i++;
-
-        }else{
-          insertado = false;
-
-=======
           i++;
 
 
         }else{
           //insertado = false;
           //TODO introduce una posicion valida
->>>>>>> 548f81ea1b47e704b40d171ef8873154b78244da
           view.showErrorCoord();
         }
 
       }//end while insert
 
 
-<<<<<<< HEAD
-    };
-
-
-=======
->>>>>>> 548f81ea1b47e704b40d171ef8873154b78244da
   }
 
   private Direction getDirection(int size) {
