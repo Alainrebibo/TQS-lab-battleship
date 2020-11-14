@@ -54,6 +54,12 @@ public class Controller {
       view.printBoard(this.getBoardP2());
     }while(!model.getGameFinish() );
 
+    if(model.getPlayer2().getWon()){
+      view.showDialog("player 2 WIN");
+    }else{
+      view.showDialog("player 1 WIN");
+    }
+
 
   }
 
@@ -97,6 +103,7 @@ public class Controller {
 
   public void inputShip() {
 
+<<<<<<< HEAD
     Scanner scanner = new Scanner(System.in);
     int[] sizeShip = {1};
     int i = 0;
@@ -116,15 +123,32 @@ public class Controller {
         view.showInputCol();
         col = scanner.nextInt();
         scanner.nextLine();
+=======
+    Scanner sc = new Scanner(System.in);
+    int[] sizeShip = {1,1,1,1,2,2,2,3,3,4};
+    int i = 0;
+    int dir;
 
+    //boolean insertado = false;
 
-        Direction direction = getDirection(sizeShip[i]);
+      while (i < sizeShip.length){
 
-        Board boardP1 = getBoardP1();
-        if(boardP1.addShip(fila, col, sizeShip[i], direction))
-        {
-          view.shipRestantes( this.getBoardP1().getNumShips());
+        view.showInputShip(sizeShip[i]); //Mensaje tamaño barco
+
+        view.showInputFila(); //Mensaje fila
+        int fila = sc.nextInt();
+
+        view.showInputCol(); //Mensaje columna
+        int col = sc.nextInt();
+>>>>>>> 548f81ea1b47e704b40d171ef8873154b78244da
+
+        Direction direction = getDirection(sizeShip[i]); //Obtener dirección
+
+        Board boardP1 = getBoardP1(); //Obtiene board 1
+        if(boardP1.addShip(fila, col, sizeShip[i], direction)){
+          view.shipRestantes(this.getBoardP1().getNumShips());
           this.printBoardP1();
+<<<<<<< HEAD
           insertado = true;
 
             i++;
@@ -132,15 +156,26 @@ public class Controller {
         }else{
           insertado = false;
 
+=======
+          i++;
+
+
+        }else{
+          //insertado = false;
+          //TODO introduce una posicion valida
+>>>>>>> 548f81ea1b47e704b40d171ef8873154b78244da
           view.showErrorCoord();
         }
 
       }//end while insert
 
 
+<<<<<<< HEAD
     };
 
 
+=======
+>>>>>>> 548f81ea1b47e704b40d171ef8873154b78244da
   }
 
   private Direction getDirection(int size) {
@@ -169,9 +204,6 @@ public class Controller {
           valorCorrecto = false;
       }
     }
-
-
-
 
     return scDirection;
   }
