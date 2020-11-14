@@ -19,4 +19,12 @@ public class Ship {
     public int getSize() {
         return this.size;
     }
+
+    public Coordinate getIniCoord() {
+        return null;
+    }
+
+    public Direction getDirection(){
+        return null;
+    }
 }

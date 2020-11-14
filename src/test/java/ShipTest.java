@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class ShipTest {
 
@@ -25,15 +26,12 @@ public class ShipTest {
 
     this.coordinateZeroZeroEmpty = new Coordinate(0,0, State.EMPTY);
     ship = new Ship(coordinateZeroZeroEmpty,1, Direction.HORIZONTAL);
-
   }
 
   @Test
   void testShipCreationSize1(){
 
-
     assertEquals(1, ship.getSize());
-
   }
 
   @Test
@@ -41,7 +39,6 @@ public class ShipTest {
 
     ship = new Ship(coordinateZeroZeroEmpty,2, Direction.HORIZONTAL);
     assertEquals(2, ship.getSize());
-
   }
 
   @Test
@@ -61,21 +58,34 @@ public class ShipTest {
 
   @Test
   void testShipCoordinatesInitialization(){
-
+    ship = new Ship(coordinateZeroZeroEmpty, 1, Direction.HORIZONTAL);
+    assertEquals(coordinateZeroZeroEmpty, ship.getIniCoord());
   }
 
   @Test
   void testShipSizeCorrect(){
+    /*Estos test son los que hemos hecho arriba de size 1 a size 4*/
 
   }
 
   @Test
   void testShipDirectionCorrect(){
+    ship = new Ship(coordinateZeroZeroEmpty, 1, Direction.HORIZONTAL);
+    assertEquals(Direction.HORIZONTAL, ship.getDirection());
+
+    ship = new Ship(coordinateZeroZeroEmpty, 1, Direction.VERTICAL);
+    assertEquals(Direction.VERTICAL, ship.getDirection());
 
   }
 
   @Test
   void testShipDirectionNotCorrect(){
+
+    ship = new Ship(coordinateZeroZeroEmpty, 1, Direction.HORIZONTAL);
+    assertNotEquals(Direction.VERTICAL, ship.getDirection());
+
+    ship = new Ship(coordinateZeroZeroEmpty, 1, Direction.VERTICAL);
+    assertNotEquals(Direction.HORIZONTAL, ship.getDirection());
 
   }
 
