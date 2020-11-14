@@ -12,6 +12,9 @@ public class Coordinate {
     this.state = state;
   }
 
+  public Coordinate(int x, int y) {
+  }
+
   public int getX() {
     return this.x;
   }

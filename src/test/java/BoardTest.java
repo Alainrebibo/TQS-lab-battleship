@@ -94,17 +94,12 @@ public class BoardTest {
   }
 
   @Test
-  void testRemoveShipNotDrowned(){
-
-
-
-
-  }
-
-  @Test
   void testHitShipOutsideBoard(){
 
+    Coordinate coordinate = new Coordinate(-1, 25);
+    //board.hit(coordinate);
 
+    assertFalse(board.hit(coordinate));
 
 
   }
@@ -121,8 +116,24 @@ public class BoardTest {
   void testHitShipCoordinate(){
 
 
+  }
 
+  @Test
+  void testCheckBoundaries(){
 
   }
+
+  @Test
+  void testCheckAvailableCoordinates(){
+
+  }
+
+  @Test
+  void testCheckNoShipAround(){
+
+  }
+
+
+
 
 }

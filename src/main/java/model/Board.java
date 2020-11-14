@@ -71,4 +71,29 @@ public class Board {
 
     return  this.board[i][j].getState();
   }
+
+  private boolean checkBoundaries(Ship ship){
+
+
+    return false;
+  }
+
+  private boolean checkAvailableCoordinates(Ship ship){
+
+
+    //TODO IS EMPTY CALLING
+
+    return false;
+  }
+
+  private boolean checkNoShipAround(Ship ship){
+
+
+    return false;
+  }
+
+  public boolean hit(Coordinate coordinate) {
+
+    return true;
+  }
 }
