@@ -24,12 +24,12 @@ public class Ship {
         if(this.direction == Direction.HORIZONTAL)
         {
             for (int i = 0; i < this.size; i++) {
-                coord[i] = new Coordinate(iniCoord.getX(), iniCoord.getY()+i, State.SHIP);
+                coord[i] = new Coordinate(iniCoord.getX()+1+i, iniCoord.getY()+1, State.SHIP);
             }
         }else if(this.direction == Direction.VERTICAL)
         {
             for (int i = 0; i < this.size; i++) {
-                coord[i] = new Coordinate(iniCoord.getX()+i, iniCoord.getY(), State.SHIP);
+                coord[i] = new Coordinate(iniCoord.getX()+1, iniCoord.getY()+1+i, State.SHIP);
             }
         }
     }

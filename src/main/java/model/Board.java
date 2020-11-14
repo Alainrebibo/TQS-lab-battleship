@@ -37,6 +37,11 @@ public class Board {
     return this.matrix[coordinate.getX()][coordinate.getY()];
   }
 
+  public boolean addShip(int fila, int col, int size, Direction dir){
+    Ship ship = new Ship(new Coordinate(fila, col), size, dir);
+    return addShip(ship);
+  }
+
   public boolean addShip(Ship ship) {
     /* TODO
     para poder add un Ship primero ha de verificar que pueda entrar.
@@ -56,7 +61,6 @@ public class Board {
       *       - Devolver False
       *       - Pedir que se introduzca otra posicion inicial
       * */
-
 
     boolean shipAdd = false;
 
