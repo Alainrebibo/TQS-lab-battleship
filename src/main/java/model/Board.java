@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Board {
 
@@ -216,5 +217,18 @@ public class Board {
 
   public ArrayList<Ship> getShips() {
     return ships;
+  }
+
+  public boolean setBoardRandom(){
+
+
+
+
+    return false;
+  }
+
+  private int randomNumber(){
+    Random rand = new Random();
+    return rand.nextInt(MAX_SIZE-1)+MAX_SIZE;
   }
 }

@@ -180,5 +180,12 @@ public class BoardTest {
 
   }
 
+  @Test
+  void testRandomBoardShipSetting(){
+
+    assertTrue(board.setBoardRandom());
+
+  }
+
 
 }
