@@ -62,17 +62,16 @@ public class Board {
 
     boolean shipAdd = false;
 
-    if(shipCanAddToBoard(ship))
-    {
+    if(shipCanAddToBoard(ship)) {
       for (int i = 0; i < ship.getCoord().length; i++) {
         int x = ship.getCoord()[i].getX();
         int y = ship.getCoord()[i].getY();
         board[x][y].setState(State.SHIP);
-        shipAdd = true;
       }
+      shipAdd = true;
     }
 
-    return  shipAdd;
+    return shipAdd;
 
 
   }
@@ -80,20 +79,13 @@ public class Board {
   private boolean shipCanAddToBoard(Ship ship) {
     boolean verification = false;
 
-    if(checkBoundaries(ship) && checkAvailableCoordinates(ship) && checkNoShipAround(ship) )
+    if(checkShipBoundaries(ship) && checkAvailableCoordinates(ship) && checkNoShipAround(ship))
     {
       verification = true;
     }
 
     return  verification;
   }
-
-  public boolean ShipInRange(Coordinate[] coord){
-
-    //TODO verificar que puedo add el SHIP
-    return false;
-  }
-
 
   public State getState(int i, int j) {
 
