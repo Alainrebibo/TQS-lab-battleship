@@ -4,6 +4,7 @@ import model.Direction;
 import model.Ship;
 import model.State;
 import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -19,17 +20,18 @@ public class ShipTest {
   Coordinate coordinateZeroZeroEmpty;
   Ship ship ;
 
-  @Before
+  @BeforeEach
   public void setUp(){
 
     this.coordinateZeroZeroEmpty = new Coordinate(0,0, State.EMPTY);
+    ship = new Ship(coordinateZeroZeroEmpty,1, Direction.HORIZONTAL);
 
   }
 
   @Test
   void testShipCreationSize1(){
 
-    ship = new Ship(coordinateZeroZeroEmpty,1, Direction.HORIZONTAL);
+
     assertEquals(1, ship.getSize());
 
   }
