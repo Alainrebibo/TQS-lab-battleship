@@ -24,10 +24,6 @@ public class Player {
     return name;
   }
 
-  public void setName(String name) {
-    this.name = name;
-  }
-
   public Boolean hasWon() {
     return won;
   }
@@ -48,7 +44,4 @@ public class Player {
     return board;
   }
 
-  public void setBoard(Board board) {
-    this.board = board;
-  }
 }

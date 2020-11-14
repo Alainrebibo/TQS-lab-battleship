@@ -1,6 +1,10 @@
 package model;
 
+import view.ProvisionalView;
+
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
 
 public class Board {
 
@@ -70,8 +74,8 @@ public class Board {
         int y = ship.getCoord()[i].getY();
         matrix[x][y].setState(State.SHIP);
 
-        this.ships.add(ship);
       }
+      this.ships.add(ship);
       shipAdd = true;
     }
 
@@ -84,7 +88,9 @@ public class Board {
 
     if(checkShipBoundaries(ship)){
       if (checkAvailableCoordinates(ship)){
-        verification = true;
+        if(this.getShips().size() <=10){
+          verification = true;
+        }
       }
     }
 
@@ -226,5 +232,30 @@ public class Board {
     }else{
       return true;
     }
+  }
+  public boolean setBoardRandom(){
+
+    int[] shipsToSet = {1,1,1,1,2,2,2,3,3,4};
+
+    int i = 0;
+    while(i < 10){
+      Coordinate coordinate = new Coordinate(randomNumber(), randomNumber());
+      Ship ship = new Ship(coordinate, shipsToSet[i], randomDirection());
+      if (addShip(ship)){
+        i++;
+      }
+    }
+
+    return true;
+  }
+
+  private int randomNumber(){
+    Random rand = new Random();
+    return rand.nextInt(MAX_SIZE-1) + 1;
+  }
+
+  private Direction randomDirection(){
+    Random rand = new Random();
+    return Direction.values()[rand.nextInt(Direction.values().length)];
   }
 }

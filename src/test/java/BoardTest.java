@@ -2,6 +2,7 @@ import model.*;
 import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import view.ProvisionalView;
 
 import static org.junit.Assert.*;
 
@@ -177,6 +178,16 @@ public class BoardTest {
   void testNoShipsOnCreation(){
 
     assertEquals(0, board.getShips().size());
+
+  }
+
+  @Test
+  void testRandomBoardShipSetting(){
+
+    assertTrue(board.setBoardRandom());
+    ProvisionalView view = new ProvisionalView();
+
+    view.printBoard(board);
 
   }
 
