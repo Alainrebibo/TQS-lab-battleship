@@ -2,11 +2,13 @@ package model;
 
 import org.junit.jupiter.api.BeforeEach;
 
+import java.util.ArrayList;
+
 public class Board {
 
   public final int MAX_SIZE = 10;
   Coordinate[][] board;
-  Ship[] ships;
+  ArrayList<Ship> ships;
 
   public Board() {
     board = new Coordinate[MAX_SIZE][MAX_SIZE];
@@ -18,7 +20,8 @@ public class Board {
       }
     }
 
-    ships = new Ship[10];//cada jugador dispone de 10 Ships
+    this.ships = new ArrayList<>();
+        //new Ship[10];//cada jugador dispone de 10 Ships
 
   }
 
@@ -72,10 +75,28 @@ public class Board {
     return  this.board[i][j].getState();
   }
 
-  private boolean checkBoundaries(Ship ship){
+  public boolean checkShipBoundaries(Ship ship){
 
+    boolean insideBoundaries = true;
 
-    return false;
+    for (Coordinate coordinate: ship.getCoord()) {
+
+      if(!insideBoundaries(coordinate)){
+        insideBoundaries = false;
+        break;
+      }
+    }
+
+    return insideBoundaries;
+  }
+
+  private boolean insideBoundaries(Coordinate coordinate) {
+
+    int x = coordinate.getX();
+    int y = coordinate.getY();
+
+    return (x >= 0 && x <= 9) && (y >= 0 && y <= 9);
+
   }
 
   private boolean checkAvailableCoordinates(Ship ship){
@@ -92,8 +113,64 @@ public class Board {
     return false;
   }
 
-  public boolean hit(Coordinate coordinate) {
+  public Message hit(Coordinate coordinate) {
 
-    return true;
+    if (insideBoundaries(coordinate)){
+
+      State state = coordinate.getState();
+
+      switch (state){
+
+        case EMPTY :
+          return Message.WATER;
+
+        case SHIP:
+
+          coordinate.setState(State.HIT);
+
+          Ship ship = findShip(coordinate);
+
+          assert ship != null;
+          if(ship.isAlive()){
+            return Message.HIT;
+          } else{
+            removeShip(ship);
+            return Message.HITANDROWNED;
+          }
+
+        case HIT:
+          return Message.ALREADYHIT;
+
+          default:
+          break;
+
+      }
+    }
+
+    return Message.OUTBOUNDS;
+  }
+
+  private void removeShip(Ship ship) {
+
+    this.ships.remove(ship);
+
+  }
+
+  private Ship findShip(Coordinate coordinate) {
+
+    for (Ship ship: this.ships) {
+
+      for (Coordinate shipCoordinate : ship.getCoord()) {
+
+        if(coordinate == shipCoordinate){
+          shipCoordinate.setState(State.HIT);
+          return ship;
+        }
+      }
+    }
+
+    //NO DEBERIA DARSE
+    return null;
+
   }
 }

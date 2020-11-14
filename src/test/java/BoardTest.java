@@ -133,6 +133,14 @@ public class BoardTest {
   }
 
   @Test
+  void testCheckBoundariesExtra(){
+
+    Ship ship = new Ship(new Coordinate(9,0), 4, Direction.VERTICAL);
+    assertFalse(board.checkShipBoundaries(ship));
+
+  }
+
+  @Test
   void testCheckAvailableCoordinates(){
 
 
