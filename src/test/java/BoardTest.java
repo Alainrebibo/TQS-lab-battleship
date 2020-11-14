@@ -116,7 +116,7 @@ public class BoardTest {
     board.addShip(ship);
     coordinate = new Coordinate(0,0);
     board.hit(coordinate);
-    assertEquals( Message.HIT, board.hit(coordinate));
+    assertEquals( Message.ALREADYHIT, board.hit(coordinate));
 
   }
 
