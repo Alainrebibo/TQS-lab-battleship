@@ -29,8 +29,6 @@ public class BoardTest {
   @Test
   void testBoardCreation(){
 
-
-
     for (int i = 0; i < board.getSizeCol(); i++) {
       for (int j = 0; j < board.getSizeRow(); j++) {
         assertEquals(board.getState(i, j), State.EMPTY);
@@ -42,7 +40,7 @@ public class BoardTest {
   /*Se puede verificar si se ha insertado correcamente barco, si el methodo
   * ha devuelto True*/
   @Test
-  void testaddShipCorrect(){
+  void testAddShipCorrect(){
     /*Se ha de tener en cuenta, que no pueden add barcos adjacentes, estos
     * han de tener minimo un cuado de separacion.*/
     Coordinate coord00 = new Coordinate(0,0, State.SHIP);

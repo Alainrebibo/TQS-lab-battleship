@@ -32,12 +32,11 @@ public class Ship {
                 coord[i] = new Coordinate(iniCoord.getX()+i, iniCoord.getY(), State.SHIP);
             }
         }
-
-
-
     }
+    public Coordinate[] getCoord(){
 
-
+        return this.coord;
+    }
 
     public int getSize() {
         return this.size;
