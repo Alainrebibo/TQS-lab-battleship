@@ -4,6 +4,7 @@ public class Game {
 
     private Player player1, player2;
     private boolean finished;
+    private int turn;
 
     public Game() {
         this.player1 = new Player();
@@ -21,6 +22,15 @@ public class Game {
     }
 
     public boolean getGameFinish(){
-        return false;
+        return finished;
     }
+
+    public void startGame(){
+        this.turn = 0;
+    }
+
+    public void changeTurn(){
+        this.turn++;
+    }
+
 }

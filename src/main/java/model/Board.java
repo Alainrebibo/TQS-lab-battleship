@@ -1,9 +1,6 @@
 package model;
 
-import view.ProvisionalView;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
 public class Board {
@@ -23,7 +20,6 @@ public class Board {
     }
 
     this.ships = new ArrayList<>();
-        //new Ship[10];//cada jugador dispone de 10 Ships
 
   }
 
@@ -47,24 +43,6 @@ public class Board {
   }
 
   public boolean addShip(Ship ship) {
-    /* TODO
-    para poder add un Ship primero ha de verificar que pueda entrar.
-    * Para que pueda entrar tiene que ver si se pondra en vertical o horizonal y que todas las casillas esten EMPTY
-    *
-    *   En el caso que se encuentres todas en EMPTY tendra que pasarlas de EMPTY a SHIP las coordenadas del tablero.
-    *  Estas cordenadas tambien se han de guardar en el propio objeto SHIP para saber donde se encuentra la Ship
-    *
-    *   TODO crear un nuevo estado, busy, este determina que en las casillas adjacentes que no se pueden poner barcos.*/
-
-      /*1 - Recorrer la matriz con las posoiciones de ship,
-      * 2 - Si todos los estados del la matriz son EMPTY
-      *       - Cambiar estado de EMPTY a SHIP
-      *       - Casillas adjayentes poner un estado que no se pueden ocupar (reglas del juego)
-      *       - Defolver True, porque se ha podido insertar
-      * 3 - Alguno != Empty o cualquier otro caso (Ej. Fuera de rango)
-      *       - Devolver False
-      *       - Pedir que se introduzca otra posicion inicial
-      * */
 
     boolean shipAdd = false;
 
@@ -134,8 +112,7 @@ public class Board {
       int x = ship.getCoord()[i].getX();
       int y = ship.getCoord()[i].getY();
 
-      if(!isEmpty(matrix[x][y]))
-      {
+      if(!isEmpty(matrix[x][y])) {
         allEmpty = false;
         return allEmpty;
       }

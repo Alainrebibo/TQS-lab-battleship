@@ -117,4 +117,8 @@ public class Controller {
   private Board getBoardP1(){
     return model.getPlayer1().getBoard();
   }
+
+  private Message hit(){
+    //return model.getPlayer1().getBoard().hit(new Coordinate(x,y));
+  }
 }
