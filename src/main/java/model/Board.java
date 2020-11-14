@@ -34,7 +34,7 @@ public class Board {
   }
 
   public Coordinate getCord(Coordinate coordinate){
-    return this.matrix[coordinate.getX()][coordinate.getY()];
+    return this.matrix[coordinate.getX()-1][coordinate.getY()-1];
   }
 
   public boolean addShip(Ship ship) {
@@ -205,5 +205,13 @@ public class Board {
       empty = true;
     }
       return empty;
+  }
+
+  public Coordinate[][] getMatrix() {
+    return matrix;
+  }
+
+  public ArrayList<Ship> getShips() {
+    return ships;
   }
 }

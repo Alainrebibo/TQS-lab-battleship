@@ -173,5 +173,12 @@ public class BoardTest {
 
   }
 
+  @Test
+  void testNoShipsOnCreation(){
+
+    assertEquals(0, board.getShips().size());
+
+  }
+
 
 }
