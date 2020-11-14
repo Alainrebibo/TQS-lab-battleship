@@ -17,7 +17,7 @@
 .gradle/buildOutputCleanup/outputFiles.bin
 
 bin
-.gradle
+.gradle/
 **/build/
 !src/**/build/
 # Ignore Gradle GUI config

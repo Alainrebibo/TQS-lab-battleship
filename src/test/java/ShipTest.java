@@ -3,7 +3,6 @@ import model.Coordinate;
 import model.Direction;
 import model.Ship;
 import model.State;
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -103,6 +102,10 @@ public class ShipTest {
 
     ship = new Ship(coordinateZeroZeroEmpty, 4, Direction.VERTICAL);
     assertNotEquals(Direction.HORIZONTAL, ship.getDirection());
+
+    //TODO testear una direccion que no existe? no me deja enviar un valor aleatorio, entiendo que es pq es un enum
+   /* ship = new Ship(coordinateZeroZeroEmpty, 4, ((Direction)"random value"));
+    assertNotEquals(Direction.HORIZONTAL, ship.getDirection());*/
 
   }
 
