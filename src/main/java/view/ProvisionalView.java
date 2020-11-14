@@ -69,10 +69,10 @@ public class ProvisionalView {
     System.out.println("Introduce un barco de tamaño : " + size);
   }
 
-  public void showInputShipFila() {
+  public void showInputFila() {
     System.out.print("Introduce fila : " );
   }
-  public void showInputShipCol() {
+  public void showInputCol() {
     System.out.print("Introduce columna : " );
   }
 
@@ -82,5 +82,14 @@ public class ProvisionalView {
 
   public void showErrorCoord() {
     System.out.println("Inroduce ficlas y columnas validas. Gracias.");
+  }
+
+  public void turnoJugador() {
+    System.out.println("Jugador Dispara");
+
+  }
+
+  public void showDialog( String txt) {
+    System.out.println(txt);
   }
 }

@@ -23,6 +23,8 @@ public class Main {
     * 3 - Bucle hasta que haya introducido los 10 barcos*/
 
     controller.inputShip();
+    controller.startGame();
+
 
 
   }

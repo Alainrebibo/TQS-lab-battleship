@@ -10,15 +10,70 @@ public class Controller {
   private Game model;
   private ProvisionalView view;
 
+
+
   public Controller(Game model, ProvisionalView view) {
     this.model = model;
     this.view = view;
   }
 
   public void startGame(){
+    model.startGame();
+    Scanner sc = new Scanner(System.in);
+    Message result;
+    do{
+      int fila = 0, col;
+
+      if( model.getTurn()%2 == 0){
+        this.view.turnoJugador();
+
+        this.view.showInputFila();
+        fila = sc.nextInt();
+
+        this.view.showInputCol();
+        col = sc.nextInt();
+
+        result = this.getBoardP2().hit(col, fila);
+
+        resultHit(result,  col, fila);
+
+      }else{//Turno jugador 2
+
+         result = this.getBoardP1().hit(this.getBoardP2().getCoordinateRandom());
+
+         view.showDialog("Maquina ha disparado con el siguient resultado:");
+          resultHit(result, -1, -1);
+      }
+
+      model.changeTurn();
 
 
+      view.printBoard(model.getPlayer1().getBoardEnemy());
+      System.out.println();
+      System.out.println();
+      view.printBoard(this.getBoardP2());
+    }while(!model.getGameFinish() );
 
+
+  }
+
+  private void resultHit(Message result, int fila, int col) {
+    switch (result){
+      case HIT :
+        view.showDialog("Has acertado a un barco enemigo.");
+
+        this.model.getPlayer1().getBoardEnemy().hit(fila, col);
+        break;
+      case WATER:
+        view.showDialog("Has fallado, habia agua.");
+        break;
+      case HITANDROWNED:
+        view.showDialog("Tocado y hundido.");
+        this.model.getPlayer1().getBoardEnemy().hit(fila, col);
+        break;
+      case ALREADYHIT:
+        view.showDialog("Ya habias disparado a esta casilla");
+    }
   }
 
 
@@ -53,10 +108,10 @@ public class Controller {
       while (!insertado){
 
         view.showInputShip(sizeShip[i]);
-        view.showInputShipFila();
+        view.showInputFila();
         int fila = sc.nextInt();
 
-        view.showInputShipCol();
+        view.showInputCol();
         int col = sc.nextInt();
 
 
@@ -79,6 +134,12 @@ public class Controller {
 
 
     }while (!this.finished());
+
+    if(model.getPlayer2().getWon()){
+      view.showDialog("player 2 WIN");
+    }else{
+      view.showDialog("player 1 WIN");
+    }
   }
 
   private Direction getDirection(int size) {
@@ -118,7 +179,13 @@ public class Controller {
     return model.getPlayer1().getBoard();
   }
 
+  private  Board getBoardP2(){
+    return model.getPlayer2().getBoard();
+  }
+
   private Message hit(){
     //return model.getPlayer1().getBoard().hit(new Coordinate(x,y));
+
+    return  Message.WATER;
   }
 }

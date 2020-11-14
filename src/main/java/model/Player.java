@@ -5,12 +5,15 @@ public class Player {
   String name;
   Boolean won , turn;
   Board board;
+  Board boardEnemy;
 
   public Player(){
     this.name = "Player";
     this.won = false;
     this.turn = false;
     this.board = new Board();
+    this.boardEnemy = new Board();
+
   }
 
   public Player(String name){
@@ -18,6 +21,7 @@ public class Player {
     this.won = false;
     this.turn = false;
     this.board = new Board();
+    this.boardEnemy = new Board();
   }
 
   public String getName() {
@@ -28,10 +32,11 @@ public class Player {
     return won;
   }
 
-  public void setWon(Boolean won) {
-    this.won = won;
+  public void won() {
+    this.won = true;
   }
 
+  public boolean getWon() {return this.won;}
   public Boolean getTurn() {
     return turn;
   }
@@ -44,4 +49,7 @@ public class Player {
     return board;
   }
 
+  public Board getBoardEnemy() {
+    return this.boardEnemy;
+  }
 }

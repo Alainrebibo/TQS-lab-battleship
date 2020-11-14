@@ -121,6 +121,9 @@ public class Board {
     return  allEmpty;
 
   }
+  public Message hit(int fila, int col){
+    return hit(new Coordinate(fila, col));
+  }
 
   public Message hit(Coordinate coordinate) {
 
@@ -159,6 +162,8 @@ public class Board {
 
     this.ships.remove(ship);
 
+
+
   }
 
   private Ship findShip(Coordinate coordinateHit) {
@@ -170,6 +175,7 @@ public class Board {
         if(coordinateHit.getX() == shipCoordinate.getX() && coordinateHit.getY() == shipCoordinate.getY()){
           shipCoordinate.setState(State.HIT);
           this.getCord(coordinateHit).setState(State.HIT);
+
           return ship;
         }
       }
@@ -212,7 +218,7 @@ public class Board {
 
     int i = 0;
     while(i < 10){
-      Coordinate coordinate = new Coordinate(randomNumber(), randomNumber());
+      Coordinate coordinate = getCoordinateRandom();
       Ship ship = new Ship(coordinate, shipsToSet[i], randomDirection());
       if (addShip(ship)){
         i++;
@@ -220,6 +226,10 @@ public class Board {
     }
 
     return true;
+  }
+
+  public Coordinate getCoordinateRandom() {
+    return new Coordinate(randomNumber(), randomNumber());
   }
 
   private int randomNumber(){
@@ -231,4 +241,6 @@ public class Board {
     Random rand = new Random();
     return Direction.values()[rand.nextInt(Direction.values().length)];
   }
+
+
 }

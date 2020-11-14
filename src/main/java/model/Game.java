@@ -22,15 +22,29 @@ public class Game {
     }
 
     public boolean getGameFinish(){
-        return finished;
+        return this.finished;
     }
 
     public void startGame(){
         this.turn = 0;
+        this.getPlayer2().board.setBoardRandom();
+
     }
 
     public void changeTurn(){
+
+        if(player1.getBoard().getNumShips()==0 && this.turn > 10){
+            player2.won();
+            this.finished = true;
+        }else if(player2.getBoard().getNumShips()==0 && this.turn > 10){
+            player1.won();
+            this.finished = true;
+        }
+
         this.turn++;
     }
 
+    public int getTurn() {
+        return this.turn;
+    }
 }
