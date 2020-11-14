@@ -57,15 +57,40 @@ public class Board {
       * */
 
 
+    boolean shipAdd = false;
+
+    if(shipCanAddToBoard(ship))
+    {
+      for (int i = 0; i < ship.getCoord().length; i++) {
+        int x = ship.getCoord()[i].getX();
+        int y = ship.getCoord()[i].getY();
+        board[x][y].setState(State.SHIP);
+        shipAdd = true;
+      }
+    }
+
+    return  shipAdd;
 
 
-    return  true;
   }
+
+  private boolean shipCanAddToBoard(Ship ship) {
+    boolean verification = false;
+
+    if(checkBoundaries(ship) && checkAvailableCoordinates(ship) && checkNoShipAround(ship) )
+    {
+      verification = true;
+    }
+
+    return  verification;
+  }
+
   public boolean ShipInRange(Coordinate[] coord){
 
     //TODO verificar que puedo add el SHIP
     return false;
   }
+
 
   public State getState(int i, int j) {
 
@@ -80,10 +105,23 @@ public class Board {
 
   private boolean checkAvailableCoordinates(Ship ship){
 
+    boolean allEmpty = true;
 
+    for (int i = 0; i < ship.getCoord().length; i++) {
+      int x = ship.getCoord()[i].getX();
+      int y = ship.getCoord()[i].getY();
+
+      // TODO comprobar que compureba todos los coordenadas que no sean empty
+      if(!isEmpty(board[x][y]))
+      {
+        allEmpty = false;
+        return allEmpty;
+      }
+    }
     //TODO IS EMPTY CALLING
+    return  allEmpty;
 
-    return false;
+
   }
 
   private boolean checkNoShipAround(Ship ship){
@@ -95,5 +133,15 @@ public class Board {
   public boolean hit(Coordinate coordinate) {
 
     return true;
+  }
+
+  private  boolean isEmpty(Coordinate coord){
+    boolean empty = false;
+
+    if(coord.getState() == State.EMPTY)
+    {
+      empty = true;
+    }
+      return empty;
   }
 }
