@@ -6,7 +6,7 @@ import model.State;
 
 public class ProvisionalView {
 
-  public void printBoard(Board board){
+  public static  void printBoard(Board board){
 
     Coordinate[][] matrix = board.getMatrix();
     State state;
@@ -16,19 +16,15 @@ public class ProvisionalView {
       System.out.print(i+"  ");
     }
     System.out.println();
-
     for (int i = 0; i < board.getSizeRow(); i++){
       if(i == board.getSizeRow()-1) {
         System.out.print(i + 1 + " ");
       }else{
         System.out.print(i+1+"  ");
       }
-
       for (int j = 0; j < board.getSizeCol(); j++) {
         System.out.print("  ");
-
         state = matrix[i][j].getState();
-
         if (state == State.EMPTY){
           System.out.print('~');
         } else if(state == State.HIT){
@@ -41,7 +37,7 @@ public class ProvisionalView {
     }
   }
 
-  /*public static void main(String[] args) {
+  public static void main(String[] args) {
 
     Board board = new Board();
 
@@ -52,6 +48,6 @@ public class ProvisionalView {
     board.getCord(ship).setState(State.SHIP);
     printBoard(board);
 
-  }*/
+  }
 
 }
