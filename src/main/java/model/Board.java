@@ -3,19 +3,31 @@ package model;
 public class Board {
 
   public final int MAX_SIZE = 10;
-  Coordinate[][] matrix;
+  Coordinate[][] board;
   Ship[] ships;
+
   public Board() {
+    board = new Coordinate[MAX_SIZE][MAX_SIZE];
+
+    for (int i = 0; i < getSizeRow(); i++) {
+      for (int j = 0; j < getSizeCol(); j++) {
+        
+        board[i][j] = new Coordinate(i,j,State.EMPTY);
+      }
+    }
+
+    ships = new Ship[10];//cada jugador dispone de 10 Ships
+
   }
 
 
   public int getSizeCol() {
-    return  -1;
+    return  MAX_SIZE;
   }
 
   public int getSizeRow() {
 
-    return -1;
+    return MAX_SIZE;
   }
 
   public Coordinate getCord(int x, int y){
@@ -31,6 +43,11 @@ public class Board {
     *  Estas cordenadas tambien se han de guardar en el propio objeto SHIP para saber donde se encuentra la Ship
     *
     *   TODO crear un nuevo estado, busy, este determina que en las casillas adjacentes que no se pueden poner barcos.*/
-    return  false;
+    return  true;
+  }
+
+  public State getState(int i, int j) {
+
+    return  this.board[i][j].getState();
   }
 }

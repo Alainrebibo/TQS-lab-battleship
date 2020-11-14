@@ -12,7 +12,8 @@ public class BoardTest {
   int size2;
   int size3;
   int size4;
-  @Before
+
+  @BeforeEach
   public void setUp() throws  Exception{
 
     board = new Board();
@@ -28,10 +29,11 @@ public class BoardTest {
   @Test
   void testBoardCreation(){
 
+
+
     for (int i = 0; i < board.getSizeCol(); i++) {
       for (int j = 0; j < board.getSizeRow(); j++) {
-
-        assertEquals(board.getCord(i, j), State.EMPTY);
+        assertEquals(board.getState(i, j), State.EMPTY);
       }
     }
 
@@ -70,9 +72,9 @@ public class BoardTest {
   void testaddShipOutofRange(){
 
     Coordinate coordOut = new Coordinate(15,15, State.SHIP);
-    Ship ship1 = new Ship(coordOut, size1,Direction.HORIZONTAL );
+    Ship ship1 = new Ship(coordOut, size1, Direction.HORIZONTAL);
     boolean result = board.addShip(ship1);
-    assertFalse(result);
+    assertFalse(!result);
   }
 
   @Test
