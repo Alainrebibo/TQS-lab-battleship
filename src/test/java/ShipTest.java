@@ -18,12 +18,16 @@ public class ShipTest {
   * 1 size*/
 
   Coordinate coordinateZeroZeroEmpty;
+  Coordinate coordinateZeroZeroShip;
   Ship ship ;
 
   @BeforeEach
   public void setUp(){
 
     this.coordinateZeroZeroEmpty = new Coordinate(0,0, State.EMPTY);
+    this.coordinateZeroZeroShip = new Coordinate(0,0, State.SHIP);
+
+
     ship = new Ship(coordinateZeroZeroEmpty,1, Direction.HORIZONTAL);
   }
 
@@ -58,10 +62,12 @@ public class ShipTest {
   @Test
   void testShipCoordinatesInitialization(){
     ship = new Ship(coordinateZeroZeroEmpty, 1, Direction.HORIZONTAL);
-    assertEquals(coordinateZeroZeroEmpty, ship.getIniCoord());
+    Coordinate aux = ship.getIniCoord();
+    assertEquals(coordinateZeroZeroShip, ship.getIniCoord());
 
     ship = new Ship(coordinateZeroZeroEmpty, 4, Direction.VERTICAL);
-    assertEquals(coordinateZeroZeroEmpty, ship.getIniCoord());
+     aux = ship.getIniCoord();
+    assertEquals(coordinateZeroZeroShip, ship.getIniCoord());
   }
 
 /*  @Test
