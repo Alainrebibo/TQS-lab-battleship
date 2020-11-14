@@ -50,4 +50,29 @@ public class ProvisionalView {
 
   }
 
+  public void showVerticalHorizonal() {
+
+    System.out.println("Elige una opción.");
+    System.out.println("1 - Horizonal");
+    System.out.println("2 - Vertical");
+  }
+
+  public void showInputShip(int size) {
+    System.out.println("Introduce un barco de tamaño : " + size);
+  }
+
+  public void showInputShipFila() {
+    System.out.print("Introduce fila : " );
+  }
+  public void showInputShipCol() {
+    System.out.print("Introduce columna : " );
+  }
+
+  public void shipRestantes(int numShips) {
+    System.out.println(" Te faltan por introducir " + (10 - numShips));
+  }
+
+  public void showErrorCoord() {
+    System.out.println("Inroduce ficlas y columnas validas. Gracias.");
+  }
 }

@@ -217,4 +217,14 @@ public class Board {
   public ArrayList<Ship> getShips() {
     return ships;
   }
+
+  public int getNumShips(){return  this.ships.size();}
+
+  public boolean finished(){
+    if(this.getNumShips() < 11){
+      return false;
+    }else{
+      return true;
+    }
+  }
 }

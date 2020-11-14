@@ -3,6 +3,8 @@ import model.Direction;
 import model.Game;
 import view.ProvisionalView;
 
+import java.util.Scanner;
+
 public class Main {
 
   public static void main(String[] args) {
@@ -12,11 +14,20 @@ public class Main {
 
     Controller controller = new Controller(game, view);
 
-    //controller.startGame();
+    //insertShipDefault(controller);
 
     controller.printBoardP1();
+    /*
+    * 1 - Jugador elige donde quieres poner los barcos
+    * 2 - Introduce unas cordenadas iniciales (X,Y)
+    * 3 - Bucle hasta que haya introducido los 10 barcos*/
+
+    controller.inputShip();
 
 
+  }
+
+  private static void insertShipDefault(Controller controller) {
     //SIZE 1
     System.out.println("Introducida " + controller.insertShip(1, 1, 1,Direction.HORIZONTAL));
     System.out.println("Introducida " + controller.insertShip(1, 10, 1,Direction.HORIZONTAL));
@@ -34,14 +45,5 @@ public class Main {
 
     // SIZE 4
     System.out.println("Introducida " + controller.insertShip(2, 5, 4,Direction.HORIZONTAL));
-
-
-    System.out.println();
-    System.out.println();
-    System.out.println();
-    controller.printBoardP1();
-
-
-
   }
 }
