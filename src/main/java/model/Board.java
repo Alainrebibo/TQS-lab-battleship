@@ -1,22 +1,20 @@
 package model;
 
-import org.junit.jupiter.api.BeforeEach;
-
 import java.util.ArrayList;
 
 public class Board {
 
   public final int MAX_SIZE = 10;
-  Coordinate[][] board;
+  Coordinate[][] matrix;
   ArrayList<Ship> ships;
 
   public Board() {
-    board = new Coordinate[MAX_SIZE][MAX_SIZE];
+    this.matrix = new Coordinate[MAX_SIZE][MAX_SIZE];
 
     for (int i = 0; i < getSizeRow(); i++) {
       for (int j = 0; j < getSizeCol(); j++) {
         
-        board[i][j] = new Coordinate(i,j,State.EMPTY);
+        this.matrix[i][j] = new Coordinate(i,j,State.EMPTY);
       }
     }
 
@@ -66,13 +64,12 @@ public class Board {
       for (int i = 0; i < ship.getCoord().length; i++) {
         int x = ship.getCoord()[i].getX();
         int y = ship.getCoord()[i].getY();
-        board[x][y].setState(State.SHIP);
+        matrix[x][y].setState(State.SHIP);
       }
       shipAdd = true;
     }
 
     return shipAdd;
-
 
   }
 
@@ -81,9 +78,7 @@ public class Board {
 
     if(checkShipBoundaries(ship)){
       if (checkAvailableCoordinates(ship)){
-        if(checkNoShipAround(ship)){
-          verification = true;
-        }
+        verification = true;
       }
     }
 
@@ -92,7 +87,7 @@ public class Board {
 
   public State getState(int i, int j) {
 
-    return  this.board[i][j].getState();
+    return  this.matrix[i][j].getState();
   }
 
   public boolean checkShipBoundaries(Ship ship){
@@ -127,30 +122,23 @@ public class Board {
       int x = ship.getCoord()[i].getX();
       int y = ship.getCoord()[i].getY();
 
-      // TODO comprobar que compureba todos los coordenadas que no sean empty
-      if(!isEmpty(board[x][y]))
+      if(!isEmpty(matrix[x][y]))
       {
         allEmpty = false;
         return allEmpty;
       }
     }
-    //TODO IS EMPTY CALLING
+
     return  allEmpty;
 
-
-  }
-
-  private boolean checkNoShipAround(Ship ship){
-
-
-    return false;
   }
 
   public Message hit(Coordinate coordinate) {
 
     if (insideBoundaries(coordinate)){
-
-      State state = coordinate.getState();
+       int x = coordinate.getX();
+       int y = coordinate.getY();
+      State state = this.matrix[x][y].getState();
 
       switch (state){
 

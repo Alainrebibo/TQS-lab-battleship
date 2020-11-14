@@ -65,7 +65,6 @@ public class BoardTest {
 
   }
 
-
   @Test
   void testaddShipOutofRange(){
 
@@ -82,37 +81,25 @@ public class BoardTest {
     *  esta la nave y no podemos mostrarla en la interfaz que ya han undido
     * la nave*/
 
-
-  }
-
-  @Test
-  void testRemoveNotExistingShip(){
-
-
-
-
   }
 
   @Test
   void testHitShipOutsideBoard(){
 
     Coordinate coordinate = new Coordinate(-1, 25);
-    //board.hit(coordinate);
-
-
-
-
+    assertEquals( Message.OUTBOUNDS, board.hit(coordinate));
   }
 
   @Test
   void testHitEmptyCoordinate(){
-
-
+    board = new Board();
+    Coordinate coordinate = new Coordinate(0, 0);
+    Message aux = board.hit(coordinate);
+    assertEquals( Message.WATER, board.hit(coordinate));
   }
 
   @Test
   void testHitShipCoordinate(){
-
 
   }
 
