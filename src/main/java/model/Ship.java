@@ -49,4 +49,18 @@ public class Ship {
     public Direction getDirection(){
         return this.direction;
     }
+
+    public boolean isAlive() {
+
+        boolean alive = false;
+
+        for (Coordinate coordinate : this.coord) {
+            if (coordinate.getState() == State.SHIP) {
+                alive = true;
+                break;
+            }
+        }
+
+        return alive;
+    }
 }
