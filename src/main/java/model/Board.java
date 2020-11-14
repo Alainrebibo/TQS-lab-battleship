@@ -79,12 +79,15 @@ public class Board {
   private boolean shipCanAddToBoard(Ship ship) {
     boolean verification = false;
 
-    if(checkShipBoundaries(ship) && checkAvailableCoordinates(ship) && checkNoShipAround(ship))
-    {
-      verification = true;
+    if(checkShipBoundaries(ship)){
+      if (checkAvailableCoordinates(ship)){
+        if(checkNoShipAround(ship)){
+          verification = true;
+        }
+      }
     }
 
-    return  verification;
+    return verification;
   }
 
   public State getState(int i, int j) {
