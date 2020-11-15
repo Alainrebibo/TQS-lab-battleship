@@ -4,7 +4,7 @@ import model.Board;
 import model.Coordinate;
 import model.State;
 
-public class ProvisionalView {
+public class View {
 
   public void printBoard(Board board){
 
@@ -36,6 +36,36 @@ public class ProvisionalView {
       System.out.println();
     }
   }
+
+  public void printBoardPos(Board board){
+
+    Coordinate[][] matrix = board.getMatrix();
+    State state;
+
+    System.out.print("     ");
+    for(int i=1;i<=board.getSizeRow();i++) {
+      System.out.print(i+"  ");
+    }
+    System.out.println();
+    for (int i = 0; i < board.getSizeRow(); i++){
+
+      if(i == board.getSizeRow()-1) {
+        System.out.print(i + 1 + " ");
+      }else{
+        System.out.print(i+1+"  ");
+      }
+
+      for (int j = 0; j < board.getSizeCol(); j++) {
+        System.out.print("  ");
+        state = matrix[i][j].getState();
+        Coordinate xy = matrix[i][j];
+        System.out.printf("(%d,%d) ",xy.getX(), xy.getY());
+      }
+      System.out.println();
+    }
+  }
+
+
 
   public void showMenu(){
 
@@ -91,5 +121,12 @@ public class ProvisionalView {
 
   public void showDialog( String txt) {
     System.out.println(txt);
+  }
+
+  public void startGame() {
+
+    System.out.println("-------------------------------------------- ");
+    System.out.println("-------------Empieza el Juego! ------------- ");
+    System.out.println("-------------------------------------------- ");
   }
 }

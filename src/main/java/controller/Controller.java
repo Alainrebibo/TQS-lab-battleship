@@ -1,23 +1,25 @@
 package controller;
 
 import model.*;
-import view.ProvisionalView;
+import view.View;
 
 import java.util.Scanner;
 
 public class Controller {
 
   private Game model;
-  private ProvisionalView view;
+  private View view;
 
 
 
-  public Controller(Game model, ProvisionalView view) {
+  public Controller(Game model, View view) {
     this.model = model;
     this.view = view;
   }
 
+  public Game getModel(){return this.model;}
   public void startGame(){
+    view.startGame();
     model.startGame();
     Scanner sc = new Scanner(System.in);
     Message result;
@@ -37,7 +39,7 @@ public class Controller {
 
         resultHit(result,  col, fila);
 
-      }else{//Turno jugador 2
+      }else{//Turno maquina
 
          result = this.getBoardP1().hit(this.getBoardP2().getCoordinateRandom());
 
@@ -52,6 +54,7 @@ public class Controller {
       System.out.println();
       System.out.println();
       view.printBoard(this.getBoardP2());
+
     }while(!model.getGameFinish() );
 
     if(model.getPlayer2().getWon()){
@@ -87,10 +90,9 @@ public class Controller {
 
   public void printBoardP1() {
     this.view.printBoard(this.model.getPlayer1().getBoard());
-
   }
 
-  public boolean insertShip(int fila, int col, int size, Direction dir) {
+  public boolean insertShipP1(int fila, int col, int size, Direction dir) {
 
     Board boardP1 = this.model.getPlayer1().getBoard();
     return boardP1.addShip(fila, col, size, dir);
@@ -184,5 +186,9 @@ public class Controller {
     //return model.getPlayer1().getBoard().hit(new Coordinate(x,y));
 
     return  Message.WATER;
+  }
+
+  public void printBoardCoord() {
+    this.view.printBoardPos(this.model.getPlayer1().getBoard());
   }
 }
