@@ -10,7 +10,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CoordinateTest {
 
-
   Coordinate coordinate;
   @BeforeEach
   public void setUp() throws  NullPointerException{

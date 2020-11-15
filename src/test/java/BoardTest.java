@@ -1,126 +1,186 @@
 import model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+<<<<<<< HEAD
 import view.View;
+=======
+
+import java.util.ArrayList;
+>>>>>>> 6fbc8583baf3c62d82885373a20cea4d73d56a96
 
 import static org.junit.Assert.*;
 
 public class BoardTest {
 
   Board board;
-  int size1;
-  int size2;
-  int size3;
-  int size4;
+  int[] shipSizes;
+  ArrayList<Coordinate> insideCoordinates;
+  ArrayList<Coordinate> outBoundsCoordinates;
+  Ship testShip;
 
+  //PROBAR BEFORE
   @BeforeEach
-  public void setUp() throws  Exception{
-
+  public void setUp(){
     board = new Board();
-    size1 = 1;
-    size2 = 2;
-    size3 = 3;
-    size4 = 4;
+    shipSizes = new int[]{1,2,3,4};
+
+    insideCoordinates = new ArrayList<>();
+    insideCoordinates.add(new Coordinate(1,1));
+    insideCoordinates.add(new Coordinate(2,4));
+    insideCoordinates.add(new Coordinate(5,3));
+    insideCoordinates.add(new Coordinate(7,7));
+    insideCoordinates.add(new Coordinate(1,10));
+    insideCoordinates.add(new Coordinate(10,6));
+    insideCoordinates.add(new Coordinate(9,9));
+
+    outBoundsCoordinates = new ArrayList<>();
+    outBoundsCoordinates.add(new Coordinate(-5,5));
+    outBoundsCoordinates.add(new Coordinate(5,-5));
+    outBoundsCoordinates.add(new Coordinate(-5,-5));
+    outBoundsCoordinates.add(new Coordinate(25,15));
 
   }
 
-  /*Se determina que se ha creado correcamente un tablero vacio, si todoas
-  * las coordenadas tienen el estdo vacio (EMPTY).*/
+  /*Se comprueba que al crearse un tablero todos los estados de las coordenadas de las
+  * casillas sean del tipo EMPTY (están vacías)*/
   @Test
   void testBoardCreation(){
 
-    for (int i = 0; i < board.getSizeCol(); i++) {
-      for (int j = 0; j < board.getSizeRow(); j++) {
+    for (int i = 0; i < this.board.getSizeCol(); i++) {
+      for (int j = 0; j < this.board.getSizeRow(); j++) {
         assertEquals(board.getState(i, j), State.EMPTY);
       }
     }
 
   }
 
-  /*Se puede verificar si se ha insertado correcamente barco, si el methodo
-  * ha devuelto True*/
+  /*Comprueba que se añaden correctamente barcos de distintos tamaños
+   *en vertical en el tablero en distintas posiciones del mismo. Partición equivalente
+   * con números positivos */
   @Test
-  void testAddShipCorrect(){
-    /*Se ha de tener en cuenta, que no pueden add barcos adjacentes, estos
-    * han de tener minimo un cuado de separacion.*/
-    Coordinate coord00 = new Coordinate(1,1, State.SHIP);
-    Ship ship1 = new Ship(coord00, size1,Direction.HORIZONTAL );
-    boolean result = board.addShip(ship1);
-    assertTrue(result);
+  void testAddShipsCorrectly(){
 
-    Coordinate coord20 = new Coordinate(1,3, State.SHIP);
-    Ship ship2 = new Ship(coord20, size2,Direction.HORIZONTAL );
-    board.addShip(ship2);
-    assertTrue(result);
+    //Insertamos barcos de distintos tamaños en horizontal
+    testShip = new Ship(insideCoordinates.get(0), shipSizes[0], Direction.HORIZONTAL);
+    assertTrue(this.board.addShip(testShip));
+    testShip = new Ship(insideCoordinates.get(1), shipSizes[1], Direction.HORIZONTAL);
+    assertTrue(this.board.addShip(testShip));
+    testShip = new Ship(insideCoordinates.get(2), shipSizes[2], Direction.HORIZONTAL);
+    assertTrue(this.board.addShip(testShip));
+    testShip = new Ship(insideCoordinates.get(3), shipSizes[3], Direction.HORIZONTAL);
+    assertTrue(this.board.addShip(testShip));
 
-    Coordinate coord40 = new Coordinate(1,5, State.SHIP);
-    Ship ship3 = new Ship(coord40, size3,Direction.HORIZONTAL );
-    board.addShip(ship3);
-    assertTrue(result);
+    this.board = new Board(); //Limpiamos el tablero
 
-    Coordinate coord60 = new Coordinate(1,7, State.SHIP);
-    Ship ship4 = new Ship(coord60, size4,Direction.HORIZONTAL );
-    board.addShip(ship4);
-    assertTrue(result);
+    //Insertamos barcos de distintos tamaños en horizontal
+    testShip = new Ship(insideCoordinates.get(0), shipSizes[0], Direction.VERTICAL);
+    assertTrue(this.board.addShip(testShip));
+    testShip = new Ship(insideCoordinates.get(1), shipSizes[1], Direction.VERTICAL);
+    assertTrue(this.board.addShip(testShip));
+    testShip = new Ship(insideCoordinates.get(2), shipSizes[2], Direction.VERTICAL);
+    assertTrue(this.board.addShip(testShip));
+    testShip = new Ship(insideCoordinates.get(3), shipSizes[3], Direction.VERTICAL);
+    assertTrue(this.board.addShip(testShip));
 
   }
 
+  /*Comprueba que NO se añaden correctamente barcos de distintos tamaños
+   *en vertical en el tablero en distintas posiciones del mismo */
   @Test
-  void testaddShipOutofRange(){
+  void testAddShipsNotCorrectly(){
 
-    Coordinate coordOut = new Coordinate(15,15, State.SHIP);
-    Ship ship1 = new Ship(coordOut, size1, Direction.HORIZONTAL);
-    boolean result = board.addShip(ship1);
-    assertFalse(result);
-  }
+    //Particiones equivalentes con números negativos. Fila negativa
+    testShip = new Ship(outBoundsCoordinates.get(0), shipSizes[0], Direction.HORIZONTAL);
+    assertFalse(this.board.addShip(testShip));
+    //Particiones equivalentes con números negativos. Columna negativa
+    testShip = new Ship(outBoundsCoordinates.get(1), shipSizes[0], Direction.HORIZONTAL);
+    assertFalse(this.board.addShip(testShip));
+    //Particiones equivalentes con números negativos. Ambas negativas
+    testShip = new Ship(outBoundsCoordinates.get(2), shipSizes[0], Direction.HORIZONTAL);
+    assertFalse(this.board.addShip(testShip));
+    //Particiones equivalentes con números negativos. Ambas positivas fuera de rango
+    testShip = new Ship(outBoundsCoordinates.get(3), shipSizes[0], Direction.HORIZONTAL);
+    assertFalse(this.board.addShip(testShip));
 
-  @Test
-  void testRemoveShipCorrect(){
+    //Valores límite y frontera. Última columna
+    testShip = new Ship(insideCoordinates.get(4), shipSizes[3], Direction.HORIZONTAL);
+    assertFalse(this.board.addShip(testShip));
+    //Valores límite y frontera. Última fila
+    testShip = new Ship(insideCoordinates.get(5), shipSizes[3], Direction.VERTICAL);
+    assertFalse(this.board.addShip(testShip));
+    //Valores límite y frontera. Penúltima fila y columna
+    testShip = new Ship(insideCoordinates.get(6), shipSizes[2], Direction.VERTICAL);
+    assertFalse(this.board.addShip(testShip));
 
-    /*TODO remover para? si la eliminamos perdemos la información de donde
-    *  esta la nave y no podemos mostrarla en la interfaz que ya han undido
-    * la nave*/
-
-  }
-
-  @Test
-  void testHitShipOutsideBoard(){
-
-    Coordinate coordinate = new Coordinate(-1, 25);
-    assertEquals( Message.OUTBOUNDS, board.hit(coordinate));
-  }
-
-  @Test
-  void testHitEmptyCoordinate(){
-    board = new Board();
-    Coordinate coordinate = new Coordinate(1, 1);
-    assertEquals( Message.WATER, board.hit(coordinate));
-  }
-
-  @Test
-  void testHitShipCoordinate(){
-
-    Coordinate coordinate = new Coordinate(1, 1);
-    Ship ship = new Ship(coordinate, 1, Direction.VERTICAL );
-    board.addShip(ship);
-    coordinate = new Coordinate(1,1);
-    assertEquals( Message.HITANDROWNED, board.hit(coordinate));
+    //Valor límite. Intenta añadir un barco donde ya hay uno
+    testShip = new Ship(insideCoordinates.get(0), shipSizes[0], Direction.VERTICAL);
+    this.board.addShip(testShip);
+    testShip = new Ship(insideCoordinates.get(0), shipSizes[0], Direction.VERTICAL);
+    assertFalse(this.board.addShip(testShip));
 
   }
 
+  //Prueba a borrar un barco existente en el tablero
   @Test
-  void testHitShipCoordinateAlreadyHit(){
+  void testRemoveExistingShipFromBoard(){
 
-    Coordinate coordinate = new Coordinate(1, 1);
-    Ship ship = new Ship(coordinate, 1, Direction.VERTICAL );
-    board.addShip(ship);
-    coordinate = new Coordinate(1,1);
-    board.hit(coordinate);
-    assertEquals( Message.ALREADYHIT, board.hit(coordinate));
+    testShip = new Ship(insideCoordinates.get(0), shipSizes[0], Direction.HORIZONTAL);
+    this.board.addShip(testShip);
+    assertEquals(1, board.getShips().size());
+    /*Comprueba que se borra el barco dentro del tablero*/
+    this.board.removeShip(testShip);
+    assertEquals(0, board.getShips().size());
 
   }
 
+
+  //Prueba a borrar un barco no existente en el tablero
   @Test
+  void testRemoveNotExistingShipFromBoard(){
+
+    testShip = new Ship(insideCoordinates.get(0), shipSizes[0], Direction.HORIZONTAL);
+    this.board.addShip(testShip);
+    assertEquals(1, board.getShips().size());
+    testShip = new Ship(insideCoordinates.get(1), shipSizes[1], Direction.VERTICAL);
+    this.board.removeShip(testShip);
+    assertEquals(1, board.getShips().size());
+
+  }
+
+  //Comprueba lso mensajes que devuelve el método que golpea dentro del tablero rival
+  @Test
+  void testHitInsideBoard(){
+
+    testShip = new Ship(insideCoordinates.get(0), shipSizes[0], Direction.VERTICAL);
+    this.board.addShip(testShip);
+
+    //Mensaje al golpear una coordenada vacía
+    assertEquals(Message.WATER, this.board.hit(insideCoordinates.get(1)));
+
+    //Golpeamos y hundimos un barco de tamaño 1
+    assertEquals(Message.HITANDROWNED, this.board.hit(insideCoordinates.get(0)));
+
+    //Volvemos a golpear el mismo barco
+    assertEquals(Message.ALREADYHIT, this.board.hit(insideCoordinates.get(0)));
+
+    testShip = new Ship(insideCoordinates.get(3), shipSizes[2], Direction.VERTICAL);
+    this.board.addShip(testShip);
+    assertEquals(Message.HIT, this.board.hit(insideCoordinates.get(3)));
+
+  }
+
+  //Comprueba el mensaje que devuelve el método que golpea fuera del tablero rival
+  @Test
+  void testHitOutsideBoard(){
+
+    assertEquals(Message.OUTBOUNDS, board.hit(outBoundsCoordinates.get(0)));
+    assertEquals(Message.OUTBOUNDS, board.hit(outBoundsCoordinates.get(1)));
+    assertEquals(Message.OUTBOUNDS, board.hit(outBoundsCoordinates.get(2)));
+    assertEquals(Message.OUTBOUNDS, board.hit(outBoundsCoordinates.get(3)));
+
+  }
+
+  /*@Test
   void testCheckBoundariesCorrect(){
 
     Ship ship = new Ship(new Coordinate(1,1), 4, Direction.VERTICAL);
@@ -171,7 +231,7 @@ public class BoardTest {
     Ship ship = new Ship(boardCoord, 3, Direction.VERTICAL);
     assertFalse(board.addShip(ship));
 
-  }
+  }*/
 
   @Test
   void testNoShipsOnCreation(){
@@ -184,6 +244,7 @@ public class BoardTest {
   void testRandomBoardShipSetting(){
 
     assertTrue(board.setBoardRandom());
+<<<<<<< HEAD
     View view = new View();
 
     view.printBoard(board);
@@ -192,17 +253,12 @@ public class BoardTest {
 
   @Test
   void testRemoveShipFromBoard(){
+=======
+    //ProvisionalView view = new ProvisionalView();
+>>>>>>> 6fbc8583baf3c62d82885373a20cea4d73d56a96
 
-    Coordinate coordinate = new Coordinate(5,5);
-    Ship ship = new Ship(coordinate, 5, Direction.VERTICAL);
-    board = new Board();
-    assertTrue(board.addShip(ship));
-    board.removeShip(ship);
-    assertEquals(0, board.getShips().size());
+    //view.printBoard(board);
 
   }
-
-
-
 
 }
