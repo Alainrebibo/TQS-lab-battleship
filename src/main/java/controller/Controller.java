@@ -10,14 +10,13 @@ public class Controller {
   private Game model;
   private View view;
 
-
-
   public Controller(Game model, View view) {
     this.model = model;
     this.view = view;
   }
 
   public Game getModel(){return this.model;}
+
   public void startGame(){
     view.startGame();
     model.startGame();
@@ -46,7 +45,6 @@ public class Controller {
          view.showDialog("Maquina ha disparado con el siguient resultado:");
           resultHit(result, -1, -1);
       }
-
       model.changeTurn();
 
 
@@ -57,6 +55,10 @@ public class Controller {
 
     }while(!model.getGameFinish() );
 
+    showWiner();
+  }
+
+  public void showWiner() {
     if(model.getPlayer2().getWon()){
       view.showDialog("player 2 WIN");
       System.exit(0);
@@ -64,8 +66,6 @@ public class Controller {
       view.showDialog("player 1 WIN");
       System.exit(0);
     }
-
-
   }
 
   private void resultHit(Message result, int fila, int col) {
@@ -92,8 +92,8 @@ public class Controller {
     this.view.printBoard(this.model.getPlayer1().getBoard());
   }
 
+  //Funcion de traspaso
   public boolean insertShipP1(int fila, int col, int size, Direction dir) {
-
     Board boardP1 = this.model.getPlayer1().getBoard();
     return boardP1.addShip(fila, col, size, dir);
   }
@@ -130,6 +130,7 @@ public class Controller {
           //insertado = false;
           //TODO introduce una posicion valida
           view.showErrorCoord();
+
         }
 
       }//end while insert
@@ -137,19 +138,15 @@ public class Controller {
 
   }
 
-  private Direction getDirection(int size) {
-    Scanner sc = new Scanner(System.in);
-    int dir = 1;
+  public Direction getDirection(int size) {
 
+    int dir = 0;
     boolean valorCorrecto = false;
-    Direction scDirection = Direction.HORIZONTAL; // default value
+    Direction scDirection = null; // default value
     while(!valorCorrecto){
 
-      if(size != 1){
-        view.showVerticalHorizonal();
-        dir = sc.nextInt();
-      }
-      
+      dir = getDirCorrect(size);
+
       switch (dir){
         case  1:
           scDirection = Direction.HORIZONTAL;
@@ -160,11 +157,22 @@ public class Controller {
           valorCorrecto = true;
           break;
         default:
+
           valorCorrecto = false;
       }
     }
 
     return scDirection;
+  }
+
+  public int getDirCorrect(int size) {
+    int dir = -1;
+    Scanner sc = new Scanner(System.in);
+    if(size >0 && size < 5){
+      view.showVerticalHorizonal();
+      dir = sc.nextInt();
+    }
+    return dir;
   }
 
   private Board getBoardP1(){
