@@ -51,7 +51,7 @@ public class Board {
       for (int i = 0; i < ship.getCoord().length; i++) {
         int x = ship.getCoord()[i].getX();
         int y = ship.getCoord()[i].getY();
-        matrix[x][y].setState(State.SHIP);
+        this.matrix[x][y].setState(State.SHIP);
 
       }
       this.ships.add(ship);
@@ -169,8 +169,6 @@ public class Board {
   public void removeShip(Ship ship) {
 
     this.ships.remove(ship);
-
-
 
   }
 

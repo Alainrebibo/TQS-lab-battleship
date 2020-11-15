@@ -25,10 +25,10 @@ public class ProvisionalView {
       for (int j = 0; j < board.getSizeCol(); j++) {
         System.out.print("  ");
         state = matrix[i][j].getState();
-        if (state == State.EMPTY){
-          System.out.print('~');
-        } else if(state == State.HIT){
+        if(state == State.HIT){
           System.out.print('X');
+        }else if (state == State.EMPTY){
+          System.out.print('~');
         } else{
           System.out.print('O');
         }
