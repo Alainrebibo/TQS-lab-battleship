@@ -29,12 +29,13 @@ public class ControllerTest {
     @Test
     public void scannerInputShipCorrect(){
 
+
         for(Ship ship : mkInput.getShips()){
-            assertTrue(controller.insertShipP1(
+            controller.getModel().getPlayer1().getBoard().addShip(
                     ship.getIniCoord().getX(),
                     ship.getIniCoord().getY(),
                     ship.getSize(),
-                    ship.getDirection()));
+                    ship.getDirection());
         }
 
         for(Ship ship : mkInput.getShips()){
@@ -43,8 +44,8 @@ public class ControllerTest {
                 int mkX = ship.getCoord()[i].getX();
                 int mkY = ship.getCoord()[i].getY();
 
-                int boardX = controller.getModel().getPlayer1().getBoard().getCord(ship.getCoord()[i]).getX();
-                int boardY = controller.getModel().getPlayer1().getBoard().getCord(ship.getCoord()[i]).getY();
+                int boardX = controller.getModel().getPlayer1().getBoard().getCord(new Coordinate(mkX, mkY)).getX();
+                int boardY = controller.getModel().getPlayer1().getBoard().getCord(new Coordinate(mkX, mkY)).getY();
 
                assertEquals(mkX,boardX);
                assertEquals(mkY,boardY);
@@ -87,30 +88,7 @@ public class ControllerTest {
         }
     }
 
-    @Test
-    public void playTest(){
 
-        controller.getModel().getPlayer1().getBoard().setBoardRandom();
-        //controller.getModel().getPlayer2().getBoard().setBoardRandom();
-
-        ArrayList<Integer> arrayCoord = new ArrayList<>();
-        for (int i = 0; i < 10 ; i++) {
-            for (int j = 0; j <10 ; j++) {
-
-                arrayCoord.add(i);
-                arrayCoord.add(j);
-            }
-        }
-
-        //mkInput.scanner(arrayCoord);
-
-        for(Integer cood : arrayCoord){
-            mkInput.scanner(cood);
-        }
-        controller.play();
-
-        assertTrue(controller.getModel().getGameFinish());
-    }
 
     @Test
     public void endGameTest(){
@@ -126,7 +104,7 @@ public class ControllerTest {
 
     @Test
     public void ScannerIntTest(){
-
+        mkInput.setInputShips();
         for(Ship value : mkInput.getShips()){
             mkInput.scanner(value.getIniCoord().getX());
             int result = controller.scannerInt();
