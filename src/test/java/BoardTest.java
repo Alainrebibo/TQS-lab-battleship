@@ -165,7 +165,7 @@ public class BoardTest {
 
     testShip = new Ship(insideCoordinates.get(3), shipSizes[2], Direction.VERTICAL);
     this.board.addShip(testShip);
-    assertEquals(Message.HIT, this.board.hit(insideCoordinates.get(3)));
+    assertEquals(Message.HIT, this.board.hit(7,7));
 
   }
 
@@ -180,76 +180,35 @@ public class BoardTest {
 
   }
 
-  /*@Test
-  void testCheckBoundariesCorrect(){
-
-    Ship ship = new Ship(new Coordinate(1,1), 4, Direction.VERTICAL);
-    assertTrue(board.checkShipBoundaries(ship));
-
-  }
-
-  @Test
-  void testCheckBoundariesWrong(){
-
-    Ship ship = new Ship(new Coordinate(-1,0), 4, Direction.VERTICAL);
-    assertFalse(board.checkShipBoundaries(ship));
-
-  }
-
-  @Test
-  void testCheckBoundariesExtra(){
-
-    Ship ship = new Ship(new Coordinate(10,1), 4, Direction.VERTICAL);
-    assertFalse(board.checkShipBoundaries(ship));
-
-  }
-
-  @Test
-  void testCheckAvailableCoordinatesTrue(){
-
-    Coordinate coordinate = new Coordinate(5,5);
-    Ship ship = new Ship(coordinate, 3, Direction.VERTICAL);
-    assertTrue(board.addShip(ship));
-
-  }
-
-  @Test
-  void testAddShipOutBoundaries(){
-
-    Coordinate coordinate = new Coordinate(5,5);
-    Ship ship = new Ship(coordinate, 3, Direction.VERTICAL);
-    assertTrue(board.addShip(ship));
-
-  }
-
-  @Test
-  void testCoordinateAlreadyHasShip(){
-
-    Coordinate boardCoord = new Coordinate(5,5);
-    board.getCord(boardCoord).setState(State.SHIP);
-
-    Ship ship = new Ship(boardCoord, 3, Direction.VERTICAL);
-    assertFalse(board.addShip(ship));
-
-  }*/
-
   @Test
   void testNoShipsOnCreation(){
 
-    assertEquals(0, board.getShips().size());
+    assertEquals(0, board.getNumShips());
 
   }
 
   @Test
   void testRandomBoardShipSetting(){
 
-    assertTrue(board.setBoardRandom());
-
-    View view = new View();
-
-    view.printBoard(board);
+    assertTrue(this.board.setBoardRandom());
 
   }
 
+  @Test
+  void testHitEnemyInsideBoard(){
+
+    testShip = new Ship(insideCoordinates.get(0), shipSizes[0], Direction.VERTICAL);
+    this.board.addShip(testShip);
+
+    assertEquals(Message.HIT, this.board.hitEnemy(1,1));
+
+  }
+
+  @Test
+  void testHitEnemyOutsideBoard(){
+
+    assertEquals(Message.OUTBOUNDS, this.board.hitEnemy(-25,50));
+
+  }
 
 }

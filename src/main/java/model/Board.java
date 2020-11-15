@@ -126,8 +126,10 @@ public class Board {
 
     if(insideBoundaries(new Coordinate(fila, col))){
       this.getCord(new Coordinate(fila, col)).setState(State.HIT);
-    }
-    return Message.HIT;
+      return Message.HIT;
+
+    }else return Message.OUTBOUNDS;
+
   }
 
   public Message hit(int col, int fila){
@@ -183,11 +185,12 @@ public class Board {
           this.getCord(coordinateHit).setState(State.HIT);
 
           return ship;
+
         }
       }
     }
 
-    //NO DEBERIA DARSE
+    //NUNCA PASA POR AQUÍ PORQUE SÓLO SE TRABAJA CON BARCOS YA INSERTADOS EN EL BOARD
     return null;
 
   }
@@ -211,13 +214,6 @@ public class Board {
 
   public int getNumShips(){return  this.ships.size();}
 
-  public boolean finished(){
-    if(this.getNumShips() < 11){
-      return false;
-    }else{
-      return true;
-    }
-  }
   public boolean setBoardRandom(){
 
     int[] shipsToSet = {1,1,1,1,2,2,2,3,3,4};

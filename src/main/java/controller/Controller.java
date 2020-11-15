@@ -98,13 +98,6 @@ public class Controller {
     return boardP1.addShip(fila, col, size, dir);
   }
 
-
-  public boolean finished() {
-
-    return this.getBoardP1().finished();
-  }
-
-
   public void inputShip() {
 
     Scanner sc = new Scanner(System.in);
