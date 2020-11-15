@@ -90,8 +90,8 @@ public class View {
 
   public void showVerticalHorizonal() {
 
-    System.out.println("Elige una opción.");
-    System.out.println("1 - Horizonal");
+    System.out.println("¿Cómo deseas posicionar el barco?");
+    System.out.println("1 - Horizontal");
     System.out.println("2 - Vertical");
   }
 
@@ -100,10 +100,10 @@ public class View {
   }
 
   public void showInputFila() {
-    System.out.print("Introduce fila : " );
+    System.out.print("Introduce la fila para el barco: " );
   }
   public void showInputCol() {
-    System.out.print("Introduce columna : " );
+    System.out.print("Introduce la columna para el barco: " );
   }
 
   public void shipRestantes(int numShips) {
@@ -128,5 +128,7 @@ public class View {
     System.out.println("-------------------------------------------- ");
     System.out.println("-------------Empieza el Juego! ------------- ");
     System.out.println("-------------------------------------------- ");
+
+
   }
 }
