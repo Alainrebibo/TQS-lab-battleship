@@ -28,7 +28,6 @@ public class Game {
     public void startGame(){
         this.turn = 0;
         this.getPlayer2().board.setBoardRandom();
-
     }
 
     public void changeTurn(){

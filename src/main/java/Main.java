@@ -1,5 +1,4 @@
 import controller.Controller;
-import model.Direction;
 import model.Game;
 import view.View;
 
@@ -21,7 +20,9 @@ public class Main {
     * 3 - Bucle hasta que haya introducido los 10 barcos*/
 
     controller.inputShip();
-    controller.startGame();
+    controller.play();
+
+
 
 
 

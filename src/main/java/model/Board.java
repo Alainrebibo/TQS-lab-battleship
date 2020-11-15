@@ -104,6 +104,12 @@ public class Board {
 
   }
 
+  public boolean insideBoundaries(int fila, int col) {
+    Coordinate coordinate = new Coordinate(fila, col);
+    return insideBoundaries(coordinate);
+
+  }
+
   private boolean checkAvailableCoordinates(Ship ship){
 
     boolean allEmpty = true;
@@ -191,7 +197,7 @@ public class Board {
       }
     }
 
-    //NUNCA PASA POR AQUÍ PORQUE SÓLO SE TRABAJA CON BARCOS YA INSERTADOS EN EL BOARD
+    //NUNCA PASA POR AQUI PORQUE SÓLO SE TRABAJA CON BARCOS YA INSERTADOS EN EL BOARD
     return null;
 
   }

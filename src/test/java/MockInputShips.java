@@ -18,6 +18,7 @@ public class MockInputShips {
     public MockInputShips(Game model){
         //this.model = model;
         ships = new ArrayList<Ship>();
+        setInputShips();
     }
 
     public void setInputShips(){
@@ -77,4 +78,8 @@ public class MockInputShips {
         InputStream in = new ByteArrayInputStream(dir.toString().getBytes());
         System.setIn(in);
     }
+
+
+
+
 }

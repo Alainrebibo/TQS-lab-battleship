@@ -17,7 +17,7 @@ public class Controller {
 
   public Game getModel(){return this.model;}
 
-  public void startGame(){
+  public void play(){
     view.startGame();
     model.startGame();
     Scanner sc = new Scanner(System.in);
@@ -27,35 +27,41 @@ public class Controller {
       int fila = 0, col;
 
       if( model.getTurn()%2 == 0){
+
         this.view.turnoJugador();
-
         this.view.showInputFila();
-        fila = sc.nextInt();
-
+        fila = scannerInt();
         this.view.showInputCol();
-        col = sc.nextInt();
+        col = scannerInt();
 
-        result = this.getBoardP2().hit(col, fila);
+        result = hitValid(fila, col);
 
         resultHit(result,  col, fila);
 
       }else{//Turno maquina
 
-         result = this.getBoardP1().hit(this.getBoardP2().getCoordinateRandom());
+         result = hitValid(this.getBoardP2().getCoordinateRandom().getX(), this.getBoardP2().getCoordinateRandom().getY());
 
          view.showDialog("Maquina ha disparado con el siguient resultado:");
-          resultHit(result, -1, -1);
+         resultHit(result, -1, -1);
       }
       model.changeTurn();
 
       view.printBoard(model.getPlayer1().getBoardEnemy());
-      System.out.println();
-      System.out.println();
       view.printBoard(this.getBoardP2());
 
     }while(!model.getGameFinish() );
 
     showWiner();
+  }
+
+  public Message hitValid(int fila, int col) {
+    return this.getBoardP2().hit(col, fila);
+  }
+
+  public int scannerInt() {
+    Scanner sc = new Scanner(System.in);
+    return sc.nextInt();
   }
 
   public void showWiner() {
@@ -115,10 +121,10 @@ public class Controller {
         view.showInputShip(sizeShip[i]); //Mensaje tamaño barco
 
         view.showInputFila(); //Mensaje fila
-        int fila = sc.nextInt();
+        int fila = scannerInt();
 
         view.showInputCol(); //Mensaje columna
-        int col = sc.nextInt();
+        int col = scannerInt();
 
         Direction direction = getDirection(sizeShip[i]); //Obtener dirección
 
@@ -160,7 +166,6 @@ public class Controller {
           valorCorrecto = true;
           break;
         default:
-
           valorCorrecto = false;
       }
     }
@@ -173,7 +178,7 @@ public class Controller {
     Scanner sc = new Scanner(System.in);
     if(size >0 && size < 5){
       view.showVerticalHorizonal();
-      dir = sc.nextInt();
+      dir = scannerInt();
     }
     return dir;
   }

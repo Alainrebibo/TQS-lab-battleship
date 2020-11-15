@@ -7,6 +7,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import view.View;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 public class ControllerTest {
@@ -17,12 +19,10 @@ public class ControllerTest {
     @BeforeEach
     public void setUp() throws Exception{
 
-         Game game = new Game();
-         View view = new View();
+        Game game = new Game();
+        View view = new View();
         controller = new Controller(game, view);
-
         mkInput = new MockInputShips(new Game());
-        view = new View();
 
     }
 
@@ -87,6 +87,30 @@ public class ControllerTest {
         }
     }
 
+    @Test
+    public void playTest(){
+
+        controller.getModel().getPlayer1().getBoard().setBoardRandom();
+        //controller.getModel().getPlayer2().getBoard().setBoardRandom();
+
+        ArrayList<Integer> arrayCoord = new ArrayList<>();
+        for (int i = 0; i < 10 ; i++) {
+            for (int j = 0; j <10 ; j++) {
+
+                arrayCoord.add(i);
+                arrayCoord.add(j);
+            }
+        }
+
+        //mkInput.scanner(arrayCoord);
+
+        for(Integer cood : arrayCoord){
+            mkInput.scanner(cood);
+        }
+        controller.play();
+
+        assertTrue(controller.getModel().getGameFinish());
+    }
 
     @Test
     public void endGameTest(){
@@ -100,7 +124,35 @@ public class ControllerTest {
         assertFalse(player2);
     }
 
+    @Test
+    public void ScannerIntTest(){
 
+        for(Ship value : mkInput.getShips()){
+            mkInput.scanner(value.getIniCoord().getX());
+            int result = controller.scannerInt();
+            mkInput.scanner(value.getIniCoord().getX());
+            assertEquals(result, value.getIniCoord().getX());
+        }
+    }
+
+    @Test
+    public void hitValidTest(){
+
+
+        //Mensaje al golpear una coordenada vacía
+        assertEquals(Message.WATER, controller.hitValid(1,1));
+
+        controller.getModel().getPlayer2().getBoard().addShip(1,1,1, Direction.HORIZONTAL);
+        //Golpeamos y hundimos un barco de tamaño 1
+        assertEquals(Message.HITANDROWNED, controller.hitValid(1,1));
+
+        //Volvemos a golpear el mismo barco
+        assertEquals(Message.ALREADYHIT, controller.hitValid(1,1));
+
+        controller.getModel().getPlayer2().getBoard().addShip(3,1,4, Direction.HORIZONTAL);
+        assertEquals(Message.HIT, controller.hitValid(3,1));
+
+    }
 
 
 
