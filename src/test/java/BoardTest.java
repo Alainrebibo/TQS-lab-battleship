@@ -126,13 +126,12 @@ public class BoardTest {
 
     testShip = new Ship(insideCoordinates.get(0), shipSizes[0], Direction.HORIZONTAL);
     this.board.addShip(testShip);
-    assertEquals(1, board.getShips().size());
+    assertEquals(1, this.board.getNumShips());
     /*Comprueba que se borra el barco dentro del tablero*/
     this.board.removeShip(testShip);
-    assertEquals(0, board.getShips().size());
+    assertEquals(0, this.board.getNumShips());
 
   }
-
 
   //Prueba a borrar un barco no existente en el tablero
   @Test
@@ -140,10 +139,10 @@ public class BoardTest {
 
     testShip = new Ship(insideCoordinates.get(0), shipSizes[0], Direction.HORIZONTAL);
     this.board.addShip(testShip);
-    assertEquals(1, board.getShips().size());
+    assertEquals(1, this.board.getNumShips());
     testShip = new Ship(insideCoordinates.get(1), shipSizes[1], Direction.VERTICAL);
     this.board.removeShip(testShip);
-    assertEquals(1, board.getShips().size());
+    assertEquals(1, this.board.getNumShips());
 
   }
 
@@ -177,37 +176,14 @@ public class BoardTest {
     assertEquals(Message.OUTBOUNDS, board.hit(outBoundsCoordinates.get(1)));
     assertEquals(Message.OUTBOUNDS, board.hit(outBoundsCoordinates.get(2)));
     assertEquals(Message.OUTBOUNDS, board.hit(outBoundsCoordinates.get(3)));
+    assertEquals(Message.OUTBOUNDS, this.board.hitEnemy(-25,50));
 
   }
 
   @Test
-  void testNoShipsOnCreation(){
-
-    assertEquals(0, board.getNumShips());
-
-  }
-
-  @Test
-  void testRandomBoardShipSetting(){
+  void testRandomBoardShipSet(){
 
     assertTrue(this.board.setBoardRandom());
-
-  }
-
-  @Test
-  void testHitEnemyInsideBoard(){
-
-    testShip = new Ship(insideCoordinates.get(0), shipSizes[0], Direction.VERTICAL);
-    this.board.addShip(testShip);
-
-    assertEquals(Message.HIT, this.board.hitEnemy(1,1));
-
-  }
-
-  @Test
-  void testHitEnemyOutsideBoard(){
-
-    assertEquals(Message.OUTBOUNDS, this.board.hitEnemy(-25,50));
 
   }
 
