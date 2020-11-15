@@ -13,7 +13,7 @@ public class Main {
     Controller controller = new Controller(game, view);
 
     //insertShipDefault(controller);
-
+    controller.printTitle();
     controller.printBoardP1();
     /*
     * 1 - Jugador elige donde quieres poner los barcos

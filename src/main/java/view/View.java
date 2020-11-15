@@ -90,8 +90,8 @@ public class View {
 
   public void showVerticalHorizonal() {
 
-    System.out.println("Elige una opción.");
-    System.out.println("1 - Horizonal");
+    System.out.println("¿Cómo deseas posicionar el barco?");
+    System.out.println("1 - Horizontal");
     System.out.println("2 - Vertical");
   }
 
@@ -100,33 +100,54 @@ public class View {
   }
 
   public void showInputFila() {
-    System.out.print("Introduce fila : " );
+    System.out.print("Introduce la FILA donde quieres posicionar el barco: ");
   }
   public void showInputCol() {
-    System.out.print("Introduce columna : " );
+    System.out.print("Introduce la COLUMNA donde quieres posicionar el barco: ");
   }
 
   public void shipRestantes(int numShips) {
-    System.out.println(" has introducido " + numShips );
+    System.out.println("Has introducido " + numShips + " barcos de momento");
   }
 
   public void showErrorCoord() {
-    System.out.println("Inroduce ficlas y columnas validas. Gracias.");
+    System.out.println("Introduce filas y columnas válidas. Gracias.");
   }
 
   public void turnoJugador() {
-    System.out.println("Jugador Dispara");
+    System.out.println("Te toca disparar");
 
   }
 
-  public void showDialog( String txt) {
+  public void showDialog(String txt) {
     System.out.println(txt);
   }
 
   public void startGame() {
 
     System.out.println("-------------------------------------------- ");
-    System.out.println("-------------Empieza el Juego! ------------- ");
+    System.out.println("-------------¡Empieza el Juego! ------------- ");
     System.out.println("-------------------------------------------- ");
+
+  }
+
+  public void gameLogo() {
+
+
+    System.out.println(" _           _   _   _           _     _       \n" +
+        "| |         | | | | | |         | |   (_)      \n" +
+        "| |__   __ _| |_| |_| | ___  ___| |__  _ _ __  \n" +
+        "| '_ \\ / _` | __| __| |/ _ \\/ __| '_ \\| | '_ \\ \n" +
+        "| |_) | (_| | |_| |_| |  __/\\__ \\ | | | | |_) |\n" +
+        "|_.__/ \\__,_|\\__|\\__|_|\\___||___/_| |_|_| .__/ \n" +
+        "                                        | |    \n" +
+        "                                        |_|");
+
+    System.out.println("                __/___            \n" +
+        "          _____/______|           \n" +
+        "  _______/_____\\_______\\_____     \n" +
+        "  \\              < < <       |    \n" +
+        "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n");
+
   }
 }
