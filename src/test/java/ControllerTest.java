@@ -29,7 +29,7 @@ public class ControllerTest {
         view = new View();
 
     }
-    
+
     @Test
     public void scannerInputShipCorrect(){
 

@@ -27,23 +27,5 @@ public class Main {
 
   }
 
-  private static void insertShipDefault(Controller controller) {
-    //SIZE 1
-    System.out.println("Introducida " + controller.insertShip(1, 1, 1,Direction.HORIZONTAL));
-    System.out.println("Introducida " + controller.insertShip(1, 10, 1,Direction.HORIZONTAL));
-    System.out.println("Introducida " + controller.insertShip(10, 1, 1,Direction.HORIZONTAL));
-    System.out.println("Introducida " + controller.insertShip(10, 10, 1,Direction.HORIZONTAL));
 
-    //SIZE 2
-    System.out.println("Introducida " + controller.insertShip(5, 1, 2,Direction.VERTICAL));
-    System.out.println("Introducida " + controller.insertShip(5, 3, 2,Direction.VERTICAL));
-    System.out.println("Introducida " + controller.insertShip(5, 5, 2,Direction.VERTICAL));
-
-    // SIZE 3
-    System.out.println("Introducida " + controller.insertShip(10, 5, 3,Direction.HORIZONTAL));
-    System.out.println("Introducida " + controller.insertShip(8, 5, 3,Direction.HORIZONTAL));
-
-    // SIZE 4
-    System.out.println("Introducida " + controller.insertShip(2, 5, 4,Direction.HORIZONTAL));
-  }
 }

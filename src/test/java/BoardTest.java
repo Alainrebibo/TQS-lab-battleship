@@ -1,12 +1,12 @@
 import model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-<<<<<<< HEAD
+
 import view.View;
-=======
+
 
 import java.util.ArrayList;
->>>>>>> 6fbc8583baf3c62d82885373a20cea4d73d56a96
+
 
 import static org.junit.Assert.*;
 
@@ -244,21 +244,12 @@ public class BoardTest {
   void testRandomBoardShipSetting(){
 
     assertTrue(board.setBoardRandom());
-<<<<<<< HEAD
+
     View view = new View();
 
     view.printBoard(board);
 
   }
 
-  @Test
-  void testRemoveShipFromBoard(){
-=======
-    //ProvisionalView view = new ProvisionalView();
->>>>>>> 6fbc8583baf3c62d82885373a20cea4d73d56a96
-
-    //view.printBoard(board);
-
-  }
 
 }
