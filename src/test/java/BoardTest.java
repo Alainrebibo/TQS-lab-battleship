@@ -1,7 +1,7 @@
 import model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import view.ProvisionalView;
+
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;

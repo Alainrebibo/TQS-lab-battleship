@@ -4,7 +4,7 @@ import model.Board;
 import model.Coordinate;
 import model.State;
 
-public class ProvisionalView {
+public class View {
 
   public void printBoard(Board board){
 

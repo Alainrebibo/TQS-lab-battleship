@@ -1,18 +1,18 @@
 package controller;
 
 import model.*;
-import view.ProvisionalView;
+import view.View;
 
 import java.util.Scanner;
 
 public class Controller {
 
   private Game model;
-  private ProvisionalView view;
+  private View view;
 
 
 
-  public Controller(Game model, ProvisionalView view) {
+  public Controller(Game model, View view) {
     this.model = model;
     this.view = view;
   }
