@@ -47,7 +47,6 @@ public class Controller {
       }
       model.changeTurn();
 
-
       view.printBoard(model.getPlayer1().getBoardEnemy());
       System.out.println();
       System.out.println();

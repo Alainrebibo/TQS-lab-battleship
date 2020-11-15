@@ -12,15 +12,13 @@ import static org.junit.Assert.*;
 public class ControllerTest {
 
     private MockInputShips mkInput;
-    private View view;
     private Controller controller;
-    private Game game;
 
     @BeforeEach
     public void setUp() throws Exception{
 
-        game = new Game();
-        view = new View();
+         Game game = new Game();
+         View view = new View();
         controller = new Controller(game, view);
 
         mkInput = new MockInputShips(new Game());
@@ -89,16 +87,7 @@ public class ControllerTest {
         }
     }
 
-    @Test
-    public void startGameTest(){
 
-        assertFalse(controller.getModel().getGameFinish());
-        boolean player1 = this.controller.getModel().getPlayer1().getWon();
-        boolean player2 = this.controller.getModel().getPlayer2().getWon();
-        assertFalse(player1);
-        assertFalse(player2);
-
-    }
     @Test
     public void endGameTest(){
 
@@ -111,35 +100,9 @@ public class ControllerTest {
         assertFalse(player2);
     }
 
-    @Test
-    public void getBoardTest(){
-        Board board = controller.getModel().getPlayer1().getBoard();
-        Game gameAux = new Game();
 
-        Coordinate[][] matrixBoard = board.getMatrix();
-        Coordinate[][] matrixAux = gameAux.getPlayer1().getBoard().getMatrix();
 
-        for (int i = 0; i < board.getMatrix().length; i++) {
-            for (int j = 0; j < board.getMatrix().length; j++) {
-                assertEquals(matrixBoard[i][j].getState(), matrixAux[i][j].getState());
-            }
-        }
-    }
 
-    @Test
-    public void getBoardEnemyTest(){
-
-        Game gameAux = new Game();
-
-        Coordinate[][] matrixBoard = this.controller.getModel().getPlayer1().getBoardEnemy().getMatrix();
-        Coordinate[][] matrixAux = gameAux.getPlayer1().getBoardEnemy().getMatrix();
-
-        for (int i = 0; i < matrixBoard.length; i++) {
-            for (int j = 0; j < matrixAux.length; j++) {
-                assertEquals(matrixBoard[i][j].getState(), matrixAux[i][j].getState());
-            }
-        }
-    }
 
 
 
