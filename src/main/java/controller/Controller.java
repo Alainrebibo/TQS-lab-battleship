@@ -22,6 +22,7 @@ public class Controller {
     model.startGame();
     Scanner sc = new Scanner(System.in);
     Message result;
+
     do{
       int fila = 0, col;
 
@@ -92,6 +93,10 @@ public class Controller {
     this.view.printBoard(this.model.getPlayer1().getBoard());
   }
 
+  public void printTitle(){
+    this.view.gameLogo();
+  }
+
   //Funcion de traspaso
   public boolean insertShipP1(int fila, int col, int size, Direction dir) {
     Board boardP1 = this.model.getPlayer1().getBoard();
@@ -99,7 +104,6 @@ public class Controller {
   }
 
   public void inputShip() {
-
     Scanner sc = new Scanner(System.in);
     int[] sizeShip = {1,1,1,1,2,2,2,3,3,4};
     int i = 0;
