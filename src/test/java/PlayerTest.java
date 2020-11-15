@@ -1,6 +1,7 @@
 import model.Player;
 import org.junit.jupiter.api.Test;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 
 class PlayerTest {
@@ -18,8 +19,8 @@ class PlayerTest {
   void testPlayerHasWon(){
 
     Player player = new Player();
-    player.setWon(true);
-    assertEquals(player.hasWon(), true);
+    //player.setWon(true);
+    assertFalse(player.hasWon());
 
   }
 
