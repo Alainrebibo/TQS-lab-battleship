@@ -24,23 +24,22 @@ public class Board {
   }
 
 
+  public Coordinate[][] getMatrix() { return matrix; }
+
   public int getSizeCol() {
     return  MAX_SIZE;
   }
 
-  public int getSizeRow() {
+  public int getSizeRow() { return MAX_SIZE; }
 
-    return MAX_SIZE;
-  }
-
-  //TODO PETA AL EJECUTAR
   public Coordinate getCord(Coordinate coordinate){
     return this.matrix[coordinate.getX()][coordinate.getY()];
   }
 
-  public boolean addShip(int fila, int col, int size, Direction dir){
-    Ship ship = new Ship(new Coordinate(fila, col), size, dir);
-    return addShip(ship);
+  public State getState(int i,int j) { return  this.matrix[i][j].getState(); }
+
+  public Coordinate getCoordinateRandom() {
+    return new Coordinate(randomNumber(), randomNumber());
   }
 
   public boolean addShip(Ship ship) {
@@ -62,6 +61,11 @@ public class Board {
 
   }
 
+  public boolean addShip(int fila, int col, int size, Direction dir){
+    Ship ship = new Ship(new Coordinate(fila, col), size, dir);
+    return addShip(ship);
+  }
+
   private boolean shipCanAddToBoard(Ship ship) {
     boolean verification = false;
 
@@ -74,11 +78,6 @@ public class Board {
     }
 
     return verification;
-  }
-
-  public State getState(int i, int j) {
-
-    return  this.matrix[i][j].getState();
   }
 
   public boolean checkShipBoundaries(Ship ship){
@@ -122,6 +121,11 @@ public class Board {
     return  allEmpty;
 
   }
+
+  public Message hit(int col, int fila){
+    return  hit(new Coordinate(col, fila));
+  }
+
   public Message hitEnemy(int fila, int col){
 
     if(insideBoundaries(new Coordinate(fila, col))){
@@ -132,9 +136,6 @@ public class Board {
 
   }
 
-  public Message hit(int col, int fila){
-    return  hit(new Coordinate(col, fila));
-  }
   public Message hit(Coordinate coordinate) {
 
     if (insideBoundaries(coordinate)){
@@ -159,7 +160,7 @@ public class Board {
         case HIT:
           return Message.ALREADYHIT;
 
-          default:
+          default: //BORRAR
           break;
 
       }
@@ -204,10 +205,6 @@ public class Board {
       return empty;
   }
 
-  public Coordinate[][] getMatrix() {
-    return matrix;
-  }
-
   public ArrayList<Ship> getShips() {
     return ships;
   }
@@ -228,10 +225,6 @@ public class Board {
     }
 
     return true;
-  }
-
-  public Coordinate getCoordinateRandom() {
-    return new Coordinate(randomNumber(), randomNumber());
   }
 
   private int randomNumber(){
