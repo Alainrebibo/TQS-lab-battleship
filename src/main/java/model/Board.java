@@ -152,7 +152,6 @@ public class Board {
       switch (state){
         case EMPTY :
           return Message.WATER;
-
         case SHIP:
           Ship ship = findShip(coordinate);
 
@@ -162,13 +161,8 @@ public class Board {
             removeShip(ship);
             return Message.HITANDROWNED;
           }
-
         case HIT:
           return Message.ALREADYHIT;
-
-          default: //BORRAR
-          break;
-
       }
     }
 
@@ -242,6 +236,5 @@ public class Board {
     Random rand = new Random();
     return Direction.values()[rand.nextInt(Direction.values().length)];
   }
-
 
 }
