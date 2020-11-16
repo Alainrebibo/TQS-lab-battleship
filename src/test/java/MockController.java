@@ -1,25 +1,22 @@
 import model.Coordinate;
 import model.Direction;
-import model.Game;
 import model.Ship;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 public class MockController {
 
-    private Game model;
+    //private final MockKeyboa mockKeyboa = new MockKeyboa();
     private ArrayList<Ship> ships;
 
     public ArrayList<Ship> getShips(){
         return ships;
     }
     public MockController(){
-        //this.model = model;
-        ships = new ArrayList<Ship>();
+        ships = new ArrayList<>();
 
     }
+
 
     public void setInputShips(){
         // Size 1
@@ -57,30 +54,6 @@ public class MockController {
         this.ships.add(ship);
     }
 
-    public void setInputShipsFail(){
 
-        Ship ship = new Ship(new Coordinate(-1,-1), 1, Direction.VERTICAL);
-        this.ships.add(ship);
 
-        ship = new Ship(new Coordinate(1,2), 1, Direction.VERTICAL);
-        this.ships.add(ship);
-
-        ship = new Ship(new Coordinate(1,2), 1, Direction.VERTICAL);
-        this.ships.add(ship);
-
-        ship = new Ship(new Coordinate(1,6), 4, Direction.VERTICAL);
-        this.ships.add(ship);
-        ship = new Ship(new Coordinate(1,6), 4, Direction.VERTICAL);
-        this.ships.add(ship);
-    }
-
-    public void scanner(Integer dir){
-        InputStream in = new ByteArrayInputStream(dir.toString().getBytes());
-        System.setIn(in);
-    }
-
-    public void scanner(String string) {
-        InputStream in = new ByteArrayInputStream(string.getBytes());
-        System.setIn(in);
-    }
 }
