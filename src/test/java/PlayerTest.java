@@ -36,8 +36,7 @@ class PlayerTest {
   void testPlayerStartsWithoutWinning(){
 
     Player player = new Player();
-    assertEquals(player.hasWon(), false);
-
+    assertFalse(player.hasWon());
   }
 
   @Test
