@@ -37,18 +37,14 @@ public class Controller {
   //Obtiene el input del jugador y comprueba que sea un entero
   public int scannerInt() {
     Scanner sc = new Scanner(System.in);
-
-    int input = 0;
-
-    if (sc.hasNextInt()){
-      input = sc.nextInt();
-      return input;
-    }
+    int input;
 
     try{
       input = Integer.parseInt(sc.nextLine());
     }catch (NumberFormatException ex) {
       System.out.println("¡Eso no era un entero!");
+      input = -1;
+      return input;
     }
     return input;
   }

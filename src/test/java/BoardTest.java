@@ -217,15 +217,12 @@ public class BoardTest {
     board.findShip(new Coordinate(9,9));
     assertEquals(2 , board.getNumShips());
 
-
     //4 - varias veces
-
     MockController mkInput = new MockController();
     mkInput.setInputShips();
     board = new Board();
     int repeticiones = 4;
-    for (Ship ship : mkInput.getShips())
-    {
+    for (Ship ship : mkInput.getShips()) {
       if(board.getNumShips() == repeticiones){
         break;
       }
@@ -238,8 +235,7 @@ public class BoardTest {
     //5 - otro el máximo de veces menos uno
     board = new Board();
     repeticiones = 9;
-    for (Ship ship : mkInput.getShips())
-    {
+    for (Ship ship : mkInput.getShips()) {
       if(board.getNumShips() == repeticiones){
         break;
       }
@@ -252,8 +248,7 @@ public class BoardTest {
     //6 - otro el máximo de veces
     board = new Board();
     repeticiones = 10;
-    for (Ship ship : mkInput.getShips())
-    {
+    for (Ship ship : mkInput.getShips()) {
       if(board.getNumShips() == repeticiones){
         break;
       }
@@ -264,8 +259,4 @@ public class BoardTest {
     assertEquals(repeticiones , board.getNumShips());
 
   }
-
-
-  
-
 }

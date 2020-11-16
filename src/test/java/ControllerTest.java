@@ -133,9 +133,14 @@ public class ControllerTest {
     }
 
     @Test
-  public void showWinner(){
+    public void testNotInteger(){
 
-      controller.resultHit(Message.HIT, 1,1);
+      mkInput.scanner("a");
+      assertEquals(-1,controller.scannerInt());
+
+      mkInput.scanner("%98q375823690-134728");
+      assertEquals(-1,controller.scannerInt());
+
     }
 
 }
