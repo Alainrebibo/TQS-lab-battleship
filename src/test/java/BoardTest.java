@@ -2,8 +2,6 @@ import model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import view.View;
-
 
 import java.util.ArrayList;
 
@@ -31,6 +29,7 @@ public class BoardTest {
     insideCoordinates.add(new Coordinate(7,7));
     insideCoordinates.add(new Coordinate(1,10));
     insideCoordinates.add(new Coordinate(10,6));
+    insideCoordinates.add(new Coordinate(9,9));
     insideCoordinates.add(new Coordinate(9,9));
 
     outBoundsCoordinates = new ArrayList<>();
@@ -184,6 +183,83 @@ public class BoardTest {
   void testRandomBoardShipSet(){
 
     assertTrue(this.board.setBoardRandom());
+
+  }
+
+  @Test
+  public void testLooping(){
+    /*1 - QUe no pase ninguna vez por el bucle
+    * 2 - otro que pase solo una vez
+    * 3 - que paen 2 veces
+    * 4 - varias veces
+    * 5 - otro el máximo de veces menos uno
+    * 6 - otro el máximo de veces*/
+
+    //1 - QUe no pase ninguna vez por el bucle. No existe barco
+    this.outBoundsCoordinates.get(1);
+    board.findShip(new Coordinate(9,9));
+    assertEquals(0 , board.getNumShips());
+
+    // 2 - que pase una vez
+    this.testShip = new Ship(this.insideCoordinates.get(0), this.shipSizes[0], Direction.VERTICAL);
+    this.board.addShip(this.testShip);
+    board.findShip(new Coordinate(9,9));
+    assertEquals(1 , board.getNumShips());
+
+    // 3 - que paen 2 veces
+    this.testShip = new Ship(this.insideCoordinates.get(0), this.shipSizes[0], Direction.VERTICAL);
+    this.board.addShip(this.testShip);
+    this.testShip = new Ship(this.insideCoordinates.get(1), this.shipSizes[0], Direction.VERTICAL);
+    this.board.addShip(this.testShip);
+
+    board.findShip(new Coordinate(9,9));
+    assertEquals(2 , board.getNumShips());
+
+
+    //4 - varias veces
+
+    MockController mkInput = new MockController();
+    mkInput.setInputShips();
+    board = new Board();
+    int repeticiones = 4;
+    for (Ship ship : mkInput.getShips())
+    {
+      if(board.getNumShips() == repeticiones){
+        break;
+      }
+      boolean result = board.addShip(ship);
+
+    }
+    board.findShip(new Coordinate(9,9));
+    assertEquals(repeticiones , board.getNumShips());
+
+    //5 - otro el máximo de veces menos uno
+    board = new Board();
+    repeticiones = 9;
+    for (Ship ship : mkInput.getShips())
+    {
+      if(board.getNumShips() == repeticiones){
+        break;
+      }
+      board.addShip(ship);
+
+    }
+    board.findShip(new Coordinate(9,9));
+    assertEquals(repeticiones , board.getNumShips());
+
+    //6 - otro el máximo de veces
+    board = new Board();
+    repeticiones = 10;
+    for (Ship ship : mkInput.getShips())
+    {
+      if(board.getNumShips() == repeticiones){
+        break;
+      }
+      board.addShip(ship);
+
+    }
+    board.findShip(new Coordinate(9,9));
+    assertEquals(repeticiones , board.getNumShips());
 
   }
 

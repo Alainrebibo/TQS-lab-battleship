@@ -175,7 +175,7 @@ public class Board {
 
   }
 
-  private Ship findShip(Coordinate coordinateHit) {
+  public Ship findShip(Coordinate coordinateHit) {
 
     for (Ship ship: this.ships) {
 

@@ -7,13 +7,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import view.View;
 
-import java.util.ArrayList;
-
 import static org.junit.Assert.*;
 
 public class ControllerTest {
 
-    private MockInputShips mkInput;
+    private MockController mkInput;
     private Controller controller;
 
     @BeforeEach
@@ -22,7 +20,7 @@ public class ControllerTest {
         Game game = new Game();
         View view = new View();
         controller = new Controller(game, view);
-        mkInput = new MockInputShips(new Game());
+        mkInput = new MockController();
 
     }
 
@@ -115,7 +113,6 @@ public class ControllerTest {
 
     @Test
     public void hitValidTest(){
-
 
         //Mensaje al golpear una coordenada vacía
         assertEquals(Message.WATER, controller.hitValid(1,1));
