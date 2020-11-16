@@ -7,13 +7,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import view.View;
 
-import java.util.ArrayList;
-
 import static org.junit.Assert.*;
 
 public class ControllerTest {
 
-    private MockInputShips mkInput;
+    private MockController mkInput;
     private Controller controller;
 
     @BeforeEach
@@ -22,13 +20,12 @@ public class ControllerTest {
         Game game = new Game();
         View view = new View();
         controller = new Controller(game, view);
-        mkInput = new MockInputShips(new Game());
+        mkInput = new MockController(new Game());
 
     }
 
     @Test
     public void scannerInputShipCorrect(){
-
 
         for(Ship ship : mkInput.getShips()){
             controller.getModel().getPlayer1().getBoard().addShip(
@@ -55,7 +52,6 @@ public class ControllerTest {
 
 
     }
-    //TODO TEST imnput ship incorrecto
 
    @Test
     public void testDirecctionCorrect(){
@@ -116,24 +112,25 @@ public class ControllerTest {
     @Test
     public void hitValidTest(){
 
+      //Mensaje al golpear una coordenada vacía
+      assertEquals(Message.WATER, controller.hitValid(1,1));
 
-        //Mensaje al golpear una coordenada vacía
-        assertEquals(Message.WATER, controller.hitValid(1,1));
+      controller.getModel().getPlayer2().getBoard().addShip(1,1,1, Direction.HORIZONTAL);
+      //Golpeamos y hundimos un barco de tamaño 1
+      assertEquals(Message.HITANDROWNED, controller.hitValid(1,1));
 
-        controller.getModel().getPlayer2().getBoard().addShip(1,1,1, Direction.HORIZONTAL);
-        //Golpeamos y hundimos un barco de tamaño 1
-        assertEquals(Message.HITANDROWNED, controller.hitValid(1,1));
+      //Volvemos a golpear el mismo barco
+      assertEquals(Message.ALREADYHIT, controller.hitValid(1,1));
 
-        //Volvemos a golpear el mismo barco
-        assertEquals(Message.ALREADYHIT, controller.hitValid(1,1));
-
-        controller.getModel().getPlayer2().getBoard().addShip(3,1,4, Direction.HORIZONTAL);
-        assertEquals(Message.HIT, controller.hitValid(3,1));
+      controller.getModel().getPlayer2().getBoard().addShip(3,1,4, Direction.HORIZONTAL);
+      assertEquals(Message.HIT, controller.hitValid(3,1));
 
     }
 
+    @Test
+  public void showWinner(){
 
-
-
+      controller.resultHit(Message.HIT, 1,1);
+    }
 
 }

@@ -183,8 +183,10 @@ public class BoardTest {
   @Test
   void testRandomBoardShipSet(){
 
-    assertTrue(this.board.setBoardRandom());
+    MockBoard mock = new MockBoard();
+
+    board = mock.getRandomBoard();
+    assertEquals(10, board.getNumShips());
 
   }
-
 }

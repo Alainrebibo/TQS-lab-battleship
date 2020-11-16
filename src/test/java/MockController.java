@@ -7,7 +7,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-public class MockInputShips {
+public class MockController {
 
     private Game model;
     private ArrayList<Ship> ships;
@@ -15,7 +15,7 @@ public class MockInputShips {
     public ArrayList<Ship> getShips(){
         return ships;
     }
-    public MockInputShips(Game model){
+    public MockController(Game model){
         //this.model = model;
         ships = new ArrayList<Ship>();
 

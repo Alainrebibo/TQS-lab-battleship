@@ -20,7 +20,6 @@ public class MockDirecction {
 
     public MockDirecction(){
 
-
         mDirecction = new HashMap<>();
         mDirecctionIncorrect = new HashMap<>();
         mDirecction.put(1, Direction.HORIZONTAL);
@@ -31,8 +30,4 @@ public class MockDirecction {
         mDirecctionIncorrect.put(3, null);
         mDirecctionIncorrect.put(1234, null);
     }
-
-
-
-
 }
