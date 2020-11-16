@@ -12,8 +12,8 @@ public class Ship {
         this.coord = new Coordinate[size];
         //this.coord[0] = iniCoord;
         this.size = size;
-        this.direction = direction;
 
+        this.direction = direction;
 
         /* Se ha de tener en cuenta que aqui estamos creando cualquier barco en cualquier Cordenada
         Quien ha de controlar si se add al board es el tablero que devolvera false si no puede add el barco*/

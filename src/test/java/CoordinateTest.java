@@ -19,53 +19,14 @@ class CoordinateTest {
   }
 
   @Test
-  void testEmptyStateCoordinate() {
+  void testStateCoordinate() {
 
     assertEquals(State.EMPTY, coordinate.getState());
-
-  }
-
-  @Test
-  void testShipStateCoordinate() {
-
-    coordinate.setState(State.SHIP);
-    assertEquals(State.SHIP, coordinate.getState());
-
-  }
-
-  @Test
-  void testHitStateCoordinate() {
-
     coordinate.setState(State.HIT);
     assertEquals(State.HIT, coordinate.getState());
-
+    coordinate.setState(State.SHIP);
+    assertEquals(State.SHIP, coordinate.getState());
   }
 
-  //Test empty coordinate to positioned ship
-  @Test
-  void testEmptyToShipStateCoordinate() {
-
-
-  }
-
-  //Test ship gets hit status
-  @Test
-  void testShipToHitStateCoordinate() {
-
-
-  }
-
-  @Test
-  void testNoShipToEmptyStateCoordinate() {
-
-
-  }
-
-  //Test ship gets hit status
-  @Test
-  void testNoHitToShipStateCoordinate() {
-
-
-  }
 
 }

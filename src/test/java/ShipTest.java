@@ -27,35 +27,44 @@ public class ShipTest {
     this.coordinateZeroZeroEmpty = new Coordinate(0,0, State.EMPTY);
     this.coordinateZeroZeroShip = new Coordinate(0,0, State.SHIP);
 
-
     ship = new Ship(coordinateZeroZeroEmpty,1, Direction.HORIZONTAL);
   }
 
   @Test
-  void testShipCreationSize1(){
+  void testShipCreationSize(){
 
     assertEquals(1, ship.getSize());
-  }
-
-  @Test
-  void testShipCreationSize2(){
 
     ship = new Ship(coordinateZeroZeroEmpty,2, Direction.HORIZONTAL);
     assertEquals(2, ship.getSize());
-  }
-
-  @Test
-  void testShipCreationSize3(){
-
-    ship = new Ship(coordinateZeroZeroEmpty,3, Direction.HORIZONTAL);
-    assertEquals(3, ship.getSize());
-  }
-
-  @Test
-  void testShipCreationSize4(){
 
     ship = new Ship(coordinateZeroZeroEmpty,4, Direction.HORIZONTAL);
     assertEquals(4, ship.getSize());
+
+    ship = new Ship(coordinateZeroZeroEmpty,3, Direction.HORIZONTAL);
+    assertEquals(3, ship.getSize());
+
+    ship = new Ship(coordinateZeroZeroEmpty, 1, Direction.HORIZONTAL);
+    Coordinate aux = ship.getIniCoord();
+    assertEquals(coordinateZeroZeroShip.getX(), aux.getX());
+    assertEquals(coordinateZeroZeroShip.getY(), aux.getY());
+
+    ship = new Ship(coordinateZeroZeroEmpty, 4, Direction.VERTICAL);
+    aux = ship.getIniCoord();
+    assertEquals(coordinateZeroZeroShip.getX(), aux.getX());
+    assertEquals(coordinateZeroZeroShip.getY(), aux.getY());
+
+    ship = new Ship(coordinateZeroZeroEmpty, 1, Direction.HORIZONTAL);
+    assertEquals(Direction.HORIZONTAL, ship.getDirection());
+
+    ship = new Ship(coordinateZeroZeroEmpty, 1, Direction.VERTICAL);
+    assertEquals(Direction.VERTICAL, ship.getDirection());
+
+    ship = new Ship(coordinateZeroZeroEmpty, 4, Direction.HORIZONTAL);
+    assertEquals(Direction.HORIZONTAL, ship.getDirection());
+
+    ship = new Ship(coordinateZeroZeroEmpty, 4, Direction.VERTICAL);
+    assertEquals(Direction.VERTICAL, ship.getDirection());
   }
 
   /*Test size mínimo(1) máximo(4)  */
@@ -65,14 +74,11 @@ public class ShipTest {
     Coordinate aux = ship.getIniCoord();
     assertEquals(coordinateZeroZeroShip.getX(), aux.getX());
     assertEquals(coordinateZeroZeroShip.getY(), aux.getY());
-    assertEquals(coordinateZeroZeroShip.getState(), aux.getState());
-
 
     ship = new Ship(coordinateZeroZeroEmpty, 4, Direction.VERTICAL);
     aux = ship.getIniCoord();
     assertEquals(coordinateZeroZeroShip.getX(), aux.getX());
     assertEquals(coordinateZeroZeroShip.getY(), aux.getY());
-    assertEquals(coordinateZeroZeroShip.getState(), aux.getState());
   }
 
 /*  @Test
@@ -85,40 +91,10 @@ public class ShipTest {
   @Test
   void testShipDirectionCorrect(){
 
-    ship = new Ship(coordinateZeroZeroEmpty, 1, Direction.HORIZONTAL);
-    assertEquals(Direction.HORIZONTAL, ship.getDirection());
 
-    ship = new Ship(coordinateZeroZeroEmpty, 1, Direction.VERTICAL);
-    assertEquals(Direction.VERTICAL, ship.getDirection());
-
-    ship = new Ship(coordinateZeroZeroEmpty, 4, Direction.HORIZONTAL);
-    assertEquals(Direction.HORIZONTAL, ship.getDirection());
-
-    ship = new Ship(coordinateZeroZeroEmpty, 4, Direction.VERTICAL);
-    assertEquals(Direction.VERTICAL, ship.getDirection());
 
   }
-  /*Test size mínimo(1) máximo(4)  */
-  @Test
-  void testShipDirectionNotCorrect(){
 
-    ship = new Ship(coordinateZeroZeroEmpty, 1, Direction.HORIZONTAL);
-    assertNotEquals(Direction.VERTICAL, ship.getDirection());
-
-    ship = new Ship(coordinateZeroZeroEmpty, 1, Direction.VERTICAL);
-    assertNotEquals(Direction.HORIZONTAL, ship.getDirection());
-
-    ship = new Ship(coordinateZeroZeroEmpty, 4, Direction.HORIZONTAL);
-    assertNotEquals(Direction.VERTICAL, ship.getDirection());
-
-    ship = new Ship(coordinateZeroZeroEmpty, 4, Direction.VERTICAL);
-    assertNotEquals(Direction.HORIZONTAL, ship.getDirection());
-
-    //TODO testear una direccion que no existe? no me deja enviar un valor aleatorio, entiendo que es pq es un enum
-   /* ship = new Ship(coordinateZeroZeroEmpty, 4, ((Direction)"random value"));
-    assertNotEquals(Direction.HORIZONTAL, ship.getDirection());*/
-
-  }
 
 
 }
