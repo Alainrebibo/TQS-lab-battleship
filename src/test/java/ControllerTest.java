@@ -112,17 +112,17 @@ public class ControllerTest {
     @Test
     public void hitValidTest(){
 
-<<<<<<< HEAD
+
         //Mensaje al golpear una coordenada vacía
         assertEquals(Message.WATER, controller.hitValid(1,1));
-=======
+
       //Mensaje al golpear una coordenada vacía
       assertEquals(Message.WATER, controller.hitValid(1,1));
 
       controller.getModel().getPlayer2().getBoard().addShip(1,1,1, Direction.HORIZONTAL);
       //Golpeamos y hundimos un barco de tamaño 1
       assertEquals(Message.HITANDROWNED, controller.hitValid(1,1));
->>>>>>> f375654e9a8ecbf3d8ae9663912639acac4f9df8
+
 
       //Volvemos a golpear el mismo barco
       assertEquals(Message.ALREADYHIT, controller.hitValid(1,1));
