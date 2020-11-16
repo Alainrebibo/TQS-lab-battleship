@@ -11,8 +11,9 @@ import static org.junit.Assert.*;
 
 public class ControllerTest {
 
-    private MockController mkInput;
+    private MockKeyboard mkInput;
     private Controller controller;
+    private MockController mockController;
 
     @BeforeEach
     public void setUp() throws Exception{
@@ -20,14 +21,15 @@ public class ControllerTest {
         Game game = new Game();
         View view = new View();
         controller = new Controller(game, view);
-        mkInput = new MockController();
+        mkInput = new MockKeyboard();
+        mockController = new MockController();
 
     }
 
     @Test
     public void scannerInputShipCorrect(){
 
-        for(Ship ship : mkInput.getShips()){
+        for(Ship ship : mockController.getShips()){
             controller.getModel().getPlayer1().getBoard().addShip(
                     ship.getIniCoord().getX(),
                     ship.getIniCoord().getY(),
@@ -35,7 +37,7 @@ public class ControllerTest {
                     ship.getDirection());
         }
 
-        for(Ship ship : mkInput.getShips()){
+        for(Ship ship : mockController.getShips()){
 
             for (int i = 0; i < ship.getCoord().length; i++) {
                 int mkX = ship.getCoord()[i].getX();
@@ -100,8 +102,8 @@ public class ControllerTest {
 
     @Test
     public void ScannerIntTest(){
-        mkInput.setInputShips();
-        for(Ship value : mkInput.getShips()){
+      mockController.setInputShips();
+        for(Ship value : mockController.getShips()){
             mkInput.scanner(value.getIniCoord().getX());
             int result = controller.scannerInt();
             mkInput.scanner(value.getIniCoord().getX());
@@ -131,6 +133,7 @@ public class ControllerTest {
       assertEquals(Message.HIT, controller.hitValid(3,1));
 
     }
+
 
     @Test
     public void testNotInteger(){

@@ -205,8 +205,6 @@ public class Board {
         }
       }
     }
-
-    //NUNCA PASA POR AQUI PORQUE SOLO SE TRABAJA CON BARCOS YA INSERTADOS EN EL BOARD
     return null;
 
   }
