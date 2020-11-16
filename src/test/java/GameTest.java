@@ -28,12 +28,6 @@ class GameTest {
     assertFalse(game.getGameFinish());
 
   }
-  @Test
-  void testGameFinished(){
-
-
-  }
-
 
 
   @Test
