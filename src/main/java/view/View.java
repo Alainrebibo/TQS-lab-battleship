@@ -37,60 +37,9 @@ public class View {
     }
   }
 
-  public void printBoardPos(Board board){
-
-    Coordinate[][] matrix = board.getMatrix();
-    State state;
-
-    System.out.print("     ");
-    for(int i=1;i<=board.getSizeRow();i++) {
-      System.out.print(i+"  ");
-    }
-    System.out.println();
-    for (int i = 0; i < board.getSizeRow(); i++){
-
-      if(i == board.getSizeRow()-1) {
-        System.out.print(i + 1 + " ");
-      }else{
-        System.out.print(i+1+"  ");
-      }
-
-      for (int j = 0; j < board.getSizeCol(); j++) {
-        System.out.print("  ");
-        state = matrix[i][j].getState();
-        Coordinate xy = matrix[i][j];
-        System.out.printf("(%d,%d) ",xy.getX(), xy.getY());
-      }
-      System.out.println();
-    }
-  }
-
-
-
-  public void showMenu(){
-
-
-
-
-
-  }
-
-  /*public static void main(String[] args) {
-
-    Board board = new Board();
-
-    Coordinate hit = new Coordinate(5,5);
-    Coordinate ship = new Coordinate(10, 10);
-
-    board.getCord(hit).setState(State.HIT);
-    board.getCord(ship).setState(State.SHIP);
-    printBoard(board);
-
-  }*/
-
   public void showVerticalHorizonal() {
 
-    System.out.println("¿Cómo deseas posicionar el barco?");
+    System.out.println("¿Como deseas posicionar el barco?");
     System.out.println("1 - Horizontal");
     System.out.println("2 - Vertical");
   }
@@ -99,11 +48,24 @@ public class View {
     System.out.println("Introduce un barco de tamaño : " + size);
   }
 
-  public void showInputFila() {
-    System.out.print("Introduce la FILA donde quieres posicionar el barco: ");
+  public void hitFila(){
+    System.out.println("Escoge la FILA a la que quieres apuntar");
   }
+
+  public void hitCol(){
+    System.out.println("Escoge la COLUMNA a la que quieres apuntar");
+  }
+
+  public void machineTurnResult(){
+    System.out.println("--Resultado del turno de la máquina:--");
+  }
+
+  public void showInputFila() {
+    System.out.println("Introduce la FILA donde quieres posicionar el barco: ");
+  }
+
   public void showInputCol() {
-    System.out.print("Introduce la COLUMNA donde quieres posicionar el barco: ");
+    System.out.println("Introduce la COLUMNA donde quieres posicionar el barco: ");
   }
 
   public void shipRestantes(int numShips) {
@@ -114,13 +76,12 @@ public class View {
     System.out.println("Introduce filas y columnas válidas. Gracias.");
   }
 
-  public void turnoJugador() {
-    System.out.println("Te toca disparar");
+  public void turnoJugador(int turno) {
+    if(turno %2 == 0){
+      System.out.println("¡Te toca disparar!" );
+    } else System.out.println("Dispara la máquina" );
 
-  }
 
-  public void showDialog(String txt) {
-    System.out.println(txt);
   }
 
   public void startGame() {
@@ -150,4 +111,31 @@ public class View {
         "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n");
 
   }
+
+
+
+  public void hitMessage(){
+    System.out.println("Has acertado a un barco enemigo");
+  }
+
+  public void missMessage(){
+    System.out.println("Has fallado, sólo había agua");
+  }
+
+  public void drownedMessage(){
+    System.out.println("¡Tocado y hundido! Un barco menos :)");
+  }
+
+  public void alreadyHitMessage(){
+    System.out.println("Ya habías disparado a esta coordenada. Pierdes el turno :(");
+  }
+
+  public void machineWins(){
+    System.out.println("Ha ganado la máquina");
+  }
+
+  public void playerWins(){
+    System.out.println("¡Has ganado a la máquina!");
+  }
+
 }
