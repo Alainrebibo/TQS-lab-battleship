@@ -36,7 +36,6 @@ public class Player {
 
   public boolean getWon() {return this.won;}
 
-
   public Board getBoard() {
     return board;
   }

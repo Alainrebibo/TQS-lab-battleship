@@ -29,7 +29,6 @@ class GameTest {
 
   }
 
-
   @Test
   public void changeTurnTest(){
     Game game = new Game();

@@ -31,7 +31,8 @@ public class Game {
     }
 
     public void changeTurn(){
-
+        /*Comprueba que la cantidad de barcos sea 0 y se hayan pasado los primeros turno para
+        asegurar que se ha insertado algú barco antes*/
         if(player1.getBoard().getNumShips()==0 && this.turn > 10){
             player2.won();
             this.finished = true;

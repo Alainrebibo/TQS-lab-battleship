@@ -78,8 +78,4 @@ public class MockController {
         InputStream in = new ByteArrayInputStream(dir.toString().getBytes());
         System.setIn(in);
     }
-
-
-
-
 }

@@ -182,10 +182,12 @@ public class BoardTest {
   @Test
   void testRandomBoardShipSet(){
 
-    assertTrue(this.board.setBoardRandom());
+    MockBoard mock = new MockBoard();
 
-  }
+    board = mock.getRandomBoard();
+    assertEquals(10, board.getNumShips());
 
+<<<<<<< HEAD
   @Test
   public void testLooping(){
     /*1 - QUe no pase ninguna vez por el bucle
@@ -263,4 +265,7 @@ public class BoardTest {
 
   }
 
+=======
+  }
+>>>>>>> f375654e9a8ecbf3d8ae9663912639acac4f9df8
 }

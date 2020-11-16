@@ -23,7 +23,6 @@ public class Board {
 
   }
 
-
   public Coordinate[][] getMatrix() { return matrix; }
 
   public int getSizeCol() {
@@ -32,20 +31,31 @@ public class Board {
 
   public int getSizeRow() { return MAX_SIZE; }
 
+  public ArrayList<Ship> getShips() {
+    return ships;
+  }
+
+  public int getNumShips(){return  this.ships.size();}
+
+  //Recibe una coordenada y devuelve la misma coordenada pero en el tablero
   public Coordinate getCord(Coordinate coordinate){
     return this.matrix[coordinate.getX()][coordinate.getY()];
   }
 
-  public State getState(int i,int j) { return  this.matrix[i][j].getState(); }
+  //Devuelve el estado de la coordenada en el tablero
+  public State getState(int i,int j) { return this.matrix[i][j].getState(); }
 
+  //Obtiene una coordenada valida aleatoriamente
   public Coordinate getCoordinateRandom() {
     return new Coordinate(randomNumber(), randomNumber());
   }
 
+  //Añade barcos al tablero
   public boolean addShip(Ship ship) {
 
     boolean shipAdd = false;
 
+    //Comprueba si el barco se puede añadir al tablero
     if(shipCanAddToBoard(ship)) {
       for (int i = 0; i < ship.getCoord().length; i++) {
         int x = ship.getCoord()[i].getX();
@@ -61,11 +71,15 @@ public class Board {
 
   }
 
+  //Añadir barco con otro constructor para clase controlador
   public boolean addShip(int fila, int col, int size, Direction dir){
     Ship ship = new Ship(new Coordinate(fila, col), size, dir);
     return addShip(ship);
   }
 
+  /*Comprueba si se puede añadir el barco en base a si entra los límites del tablero,
+  *si las coordenadas que tiene el barco estan libres y si la lista de barcos del jugador
+  * no ha llegado a su máximo (10)*/
   private boolean shipCanAddToBoard(Ship ship) {
     boolean verification = false;
 
@@ -80,6 +94,7 @@ public class Board {
     return verification;
   }
 
+  //Comprueba que todas las coordenadas de un barco están en los límites del tablero
   public boolean checkShipBoundaries(Ship ship){
 
     boolean insideBoundaries = true;
@@ -95,6 +110,7 @@ public class Board {
     return insideBoundaries;
   }
 
+  //Comprueba que la coordenada que recibe está dentro de los límites del tablero
   private boolean insideBoundaries(Coordinate coordinate) {
 
     int x = coordinate.getX();
@@ -104,12 +120,7 @@ public class Board {
 
   }
 
-  public boolean insideBoundaries(int fila, int col) {
-    Coordinate coordinate = new Coordinate(fila, col);
-    return insideBoundaries(coordinate);
-
-  }
-
+  //Comprueba que las coordenadas que el barco quiere estén libres en el tablero
   private boolean checkAvailableCoordinates(Ship ship){
 
     boolean allEmpty = true;
@@ -128,9 +139,11 @@ public class Board {
 
   }
 
+  //Golpea para el constructor
   public Message hit(int col, int fila){
     return  hit(new Coordinate(col, fila));
   }
+
 
   public Message hitEnemy(int fila, int col){
 
@@ -142,6 +155,7 @@ public class Board {
 
   }
 
+  /*Golpea en las coordenadas dadas*/
   public Message hit(Coordinate coordinate) {
 
     if (insideBoundaries(coordinate)){
@@ -169,6 +183,7 @@ public class Board {
     return Message.OUTBOUNDS;
   }
 
+  //Borra barcos de la lista de barcos del tablero
   public void removeShip(Ship ship) {
 
     this.ships.remove(ship);
@@ -191,11 +206,12 @@ public class Board {
       }
     }
 
-    //NUNCA PASA POR AQUI PORQUE SÓLO SE TRABAJA CON BARCOS YA INSERTADOS EN EL BOARD
+    //NUNCA PASA POR AQUI PORQUE SOLO SE TRABAJA CON BARCOS YA INSERTADOS EN EL BOARD
     return null;
 
   }
 
+  //Comprueba si el estado de la coordenada recibida es vacía
   private  boolean isEmpty(Coordinate coord){
     boolean empty = false;
 
@@ -205,12 +221,7 @@ public class Board {
       return empty;
   }
 
-  public ArrayList<Ship> getShips() {
-    return ships;
-  }
-
-  public int getNumShips(){return  this.ships.size();}
-
+  //Setea el el tablero de forma aleatória asegurándose de que los barcos no se pisen y estén dentro de los límites
   public boolean setBoardRandom(){
 
     int[] shipsToSet = {1,1,1,1,2,2,2,3,3,4};
@@ -227,11 +238,13 @@ public class Board {
     return true;
   }
 
+  //Devuelve un numero aleatorio dentro del limite del tablero
   private int randomNumber(){
     Random rand = new Random();
     return rand.nextInt(MAX_SIZE-1) + 1;
   }
 
+  //Devuelve una direccion (vertical/horizontal) aleatoria
   private Direction randomDirection(){
     Random rand = new Random();
     return Direction.values()[rand.nextInt(Direction.values().length)];
