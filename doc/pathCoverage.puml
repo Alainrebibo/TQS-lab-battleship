@@ -2,26 +2,20 @@
 
 start
 :Disparo;
-if (EMPTY) then (yes)
-  :WATER;
-elseif (SHIP) then (yes)
-  :Disparo acertado;
+if (Casilla vacia?) then (yes)
+  :Mensaje: Agua;
+elseif (Hay barco?) then (yes)
+  :Mensaje: Disparo acertado;
 
-  if( barco hundido?) then (yes)
+  if( Barco hundido?) then (yes)
     :Tocado y hundio;
    else (no)
     :Barco golpeado;
   endif
-
-elseif (HIT ?) then (yes)
-  :Ya habias disparado aqui;
-  else (no)
-  stop
+elseif (Habia disparado antes?) then (yes)
+  :Mensaje:Ya habias disparado aqui;
+   else (default)
 
 endif
 stop
-
-
-
-
 @enduml
