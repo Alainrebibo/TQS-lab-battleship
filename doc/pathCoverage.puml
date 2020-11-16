@@ -1,0 +1,27 @@
+@startuml
+
+start
+:Disparo;
+if (EMPTY) then (yes)
+  :WATER;
+elseif (SHIP) then (yes)
+  :Disparo acertado;
+
+  if( barco hundido?) then (yes)
+    :Tocado y hundio;
+   else (no)
+    :Barco golpeado;
+  endif
+
+elseif (HIT ?) then (yes)
+  :Ya habias disparado aqui;
+  else (no)
+  stop
+
+endif
+stop
+
+
+
+
+@enduml
