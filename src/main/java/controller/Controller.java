@@ -64,16 +64,23 @@ public class Controller {
 
   public void resultHit(Message result, int fila, int col) {
     switch (result) {
-      case HIT -> {
+      case HIT :
         this.view.hitMessage();
         this.model.getPlayer1().getBoardEnemy().hitEnemy(fila, col);
-      }
-      case WATER -> this.view.missMessage();
-      case HITANDROWNED -> {
+        break;
+
+      case WATER:
+        this.view.missMessage();
+        break;
+
+      case HITANDROWNED :
         this.view.drownedMessage();
         this.model.getPlayer1().getBoardEnemy().hitEnemy(fila, col);
-      }
-      case ALREADYHIT -> this.view.alreadyHitMessage();
+        break;
+
+      case ALREADYHIT :
+        this.view.alreadyHitMessage();
+        break;
     }
   }
 
