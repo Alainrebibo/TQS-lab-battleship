@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import static org.junit.Assert.*;
 
 public class BoardTest {
-
+  //PRUEBA
   Board board;
   int[] shipSizes;
   ArrayList<Coordinate> insideCoordinates;
