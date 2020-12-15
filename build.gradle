@@ -18,3 +18,19 @@ dependencies {
 test{
     useJUnitPlatform()
 }
+
+task customFatJar(type: Jar) {
+
+    manifest {
+
+        attributes 'Main-Class': 'Main'
+
+    }
+
+    baseName = 'Battleship'
+
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+
+    with jar
+
+}
