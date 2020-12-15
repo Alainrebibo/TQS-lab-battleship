@@ -17,6 +17,10 @@ public class Game {
         return this.player1;
     }
 
+    public void setTurn(int turn) {
+        this.turn = turn;
+    }
+
     public Player getPlayer2() {
         return this.player2;
     }

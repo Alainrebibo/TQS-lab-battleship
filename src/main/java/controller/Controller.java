@@ -88,6 +88,10 @@ public class Controller {
     this.view.printBoard(this.model.getPlayer1().getBoard());
   }
 
+  public void printBoardP2() {
+    this.view.printBoard(this.model.getPlayer2().getBoard());
+  }
+
   //Muestra por consola el título del juego
   public void printTitle(){
     this.view.gameLogo();

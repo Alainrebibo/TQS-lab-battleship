@@ -15,6 +15,14 @@ public class Player {
 
   }
 
+  public void setBoard(Board board) {
+    this.board = board;
+  }
+
+  public void setBoardEnemy(Board board) {
+    this.boardEnemy = board;
+  }
+
   public Player(String name){
     this.name = name;
     this.won = false;
